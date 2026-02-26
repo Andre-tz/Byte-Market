@@ -1,0 +1,150 @@
+{
+    "header": {
+        "aria": {
+            "homeLink": "Byte Market inicio",
+            "mainMenu": "Menu principal"
+        },
+
+        "brand": {
+            "name": "Byte Market",
+            "tagline": "Tech Store"
+        },
+
+        "nav": {
+             "home": "Inicio",
+             "laptops": "Laptops",
+             "components": "Componentes",
+             "peripherals": "Perifericos",
+             "offers": "Ofertas"
+        },
+
+        "search": {
+            "label": "Buscar productos",
+            "placeholder": "Buscar laptops, GPU, SSD...",
+            "button": "Buscar"
+        },
+
+            "account": "Cuenta",
+            "cart": "Carrito (0)"
+  },
+  "home": {
+        
+        "hero": {
+            "aria": "Hero principal",
+            "badge": "Byte Market",
+            "title": "Potencia tu setup con tecnologia de alto rendimiento",
+            "subtitle": "Descubre laptops, componentes y perifericos seleccionados para gaming, productividad y creacion de contenido.",
+            "primaryButton": "Ver productos",
+            "secondaryButton": "Arma tu PC"
+        },
+
+        "categories": {
+            "aria": "Categorias destacadas",
+            "title": "Compra por categoria",
+
+            "laptops": {
+                "title": "Laptops",
+                "description": "Ultrabooks, gaming y estaciones de trabajo."
+            },
+            "components": {
+                "title": "Componentes",
+                "description": "GPU, CPU, RAM, placas madre y almacenamiento."
+            },
+            "peripherals": {
+                "title": "Perifericos",
+                "description": "Teclados, mouse, headsets y webcams."
+            },
+            "monitors": {
+                "title": "Monitores",
+                "description": "Paneles para productividad, diseno y esports."
+            }
+        },
+
+        "featured": {
+            "aria": "Productos destacados",
+            "title": "Top ventas de la semana",
+            "subtitle": "Lo mas buscado por la comunidad Byte Market.",
+            "button": "Ver todo el catalogo"
+        },
+
+        "benefits": {
+            "aria": "Motivos de compra",
+            "title": "Por que comprar en Byte Market",
+
+            "shipping": {
+                "title": "Envio rapido",
+                "description": "Recibe tus productos en 24 - 48 horas."
+            },
+            "securePayment": {
+                "title": "Pago seguro",
+                "description": "Proteccion en cada transaccion."
+            },
+            "support": {
+                "title": "Soporte tecnico",
+                "description": "Te ayudamos a elegir lo que realmente necesitas."
+            },
+            "warranty": {
+                "title": "Garantia real",
+                "description": "Cobertura y respaldo en tus compras."
+            }
+        },
+
+        "offers": {
+            "aria": "Ofertas",
+            "title": "Ofertas flash",
+            "subtitle": "Aprovecha descuentos limitados en componentes y perifericos seleccionados.",
+            "button": "Ver ofertas"
+        },
+
+        "newsletter": {
+            "aria": "Newsletter",
+            "title": "Recibe ofertas antes que nadie",
+            "subtitle": "Suscribete y obten promociones exclusivas cada semana.",
+            "label": "Correo para newsletter",
+            "placeholder": "Tu correo electronico",
+            "button": "Suscribirme"
+        },
+
+        "closing": {
+            "aria": "Cierre",
+            "text": "Mas de 5000 clientes han mejorado su setup con Byte Market."
+        }
+
+  },
+
+  "footer": {
+        "brand": {
+            "name": "Byte Market",
+            "description": "Tecnologia para creadores, gamers y profesionales."
+        },
+
+        "quickLinks": {
+            "title": "Enlaces rapidos",
+            "aria": "Enlaces rapidos",
+            "home": "Inicio",
+            "laptops": "Laptops",
+            "components": "Componentes",
+            "peripherals": "Perifericos",
+            "offers": "Ofertas"
+        },
+
+        "support": {
+            "title": "Soporte",
+            "faq": "Preguntas frecuentes",
+            "shipping": "Envios",
+            "returns": "Devoluciones",
+            "technical": "Soporte tecnico"
+        },
+
+        "community": {
+            "title": "Comunidad",
+            "githubLabel": "GitHub:"
+        },
+
+        "bottom": {
+            "copyright": "Copyright 2026 Byte Market. Todos los derechos reservados.",
+            "madeBy": "Hecho por itsAndreDev con cafe y enfoque."
+        }
+
+  }
+}

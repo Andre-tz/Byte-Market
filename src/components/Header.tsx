@@ -1,47 +1,56 @@
+import { useTranslation } from "react-i18next";
+
 const Header = () => {
-  return (
-    <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/90 text-slate-100 backdrop-blur-md">
-        <div className="mx-auto flex w-[min(1200px,94%)] flex-wrap items-center gap-4 py-3">
-            <a href="#" className="flex items-center gap-2" aria-label="Byte Market inicio">
-                <span className="grid h-10 w-10 place-content-center rounded-lg bg-cyan-400 font-black text-slate-950 shadow-[0_0_18px_rgba(34,211,238,0.45)]">
-                    BM
-                </span>
+    const { t, i18n  } = useTranslation();
 
-                <div>
-                    <p className="text-lg font-bold leading-none">Byte Market</p>
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-300">Tech Store</p>
+    const handleLanguage = ()=>{
+        const newLanguage = i18n.language === "en"? "es" : "en" 
+        i18n.changeLanguage( newLanguage );
+    }
+    return (
+        <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/90 text-slate-100 backdrop-blur-md">
+            <div className="mx-auto flex w-[min(1200px,94%)] flex-wrap items-center gap-4 py-3">
+                <a href="#" className="flex items-center gap-2" aria-label={t("header.aria.homeLink")}>
+                    <span className="grid h-10 w-10 place-content-center rounded-lg bg-cyan-400 font-black text-slate-950 shadow-[0_0_18px_rgba(34,211,238,0.45)]">
+                        BM
+                    </span>
+
+                    <div>
+                        <p className="text-lg font-bold leading-none">{t("header.brand.name")}</p>
+                        <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-300">{t("header.brand.tagline")}</p>
+                    </div>
+                </a>
+
+                <nav className="order-3 w-full md:order-0 md:w-auto" aria-label={t("header.aria.mainMenu")}>
+                    <ul className="flex flex-wrap gap-2 text-sm md:gap-3">
+                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.home")}</a></li>
+                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.laptops")}</a></li>
+                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.components")}</a></li>
+                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.peripherals")}</a></li>
+                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.offers")}</a></li>
+                    </ul>
+                </nav>
+
+                <form className="ml-auto flex flex-1 items-center gap-2 md:max-w-md" role="search">
+                    <label htmlFor="search" className="sr-only">{t("header.search.label")}</label>
+                    <input
+                        id="search"
+                        type="search"
+                        placeholder={t("header.search.placeholder")}
+                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm outline-none ring-cyan-400 placeholder:text-slate-400 focus:ring-2"
+                    />
+                    <button type="submit" className="rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{t("header.search.button")}</button>
+                </form>
+
+                <div className="flex items-center gap-2 text-sm">
+                    <button onClick={handleLanguage} type="button"  className=" cursor-pointer rounded-md border border-cyan-400/35 bg-slate-900 px-3 py-2 font-semibold tracking-wide text-cyan-300 transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" >EN | ES</button>
+                    <button type="button"  className=" cursor-pointer rounded-md border border-slate-700 bg-slate-900 px-3 py-2 transition hover:border-cyan-400/50">{t("header.account")}</button>
+                    <button type="button" className=" cursor-pointer rounded-md bg-slate-800 px-3 py-2 transition hover:bg-slate-700">{t("header.cart")}</button>
                 </div>
-            </a>
 
-            <nav className="order-3 w-full md:order-0 md:w-auto" aria-label="Menu principal">
-                <ul className="flex flex-wrap gap-2 text-sm md:gap-3">
-                    <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">Inicio</a></li>
-                    <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">Laptops</a></li>
-                    <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">Componentes</a></li>
-                    <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">Perifericos</a></li>
-                    <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">Ofertas</a></li>
-                </ul>
-            </nav>
-
-            <form className="ml-auto flex flex-1 items-center gap-2 md:max-w-md" role="search">
-                <label htmlFor="search" className="sr-only">Buscar productos</label>
-                <input
-                    id="search"
-                    type="search"
-                    placeholder="Buscar laptops, GPU, SSD..."
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm outline-none ring-cyan-400 placeholder:text-slate-400 focus:ring-2"
-                />
-                <button type="submit" className="rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Buscar</button>
-            </form>
-
-            <div className="flex items-center gap-2 text-sm">
-                <button type="button"  className="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 transition hover:border-cyan-400/50">Cuenta</button>
-                <button type="button" className="rounded-md bg-slate-800 px-3 py-2 transition hover:bg-slate-700">Carrito (0)</button>
             </div>
-            
-        </div>
-    </header>
-  );
+        </header>
+      );
 };
 
 export default Header;
