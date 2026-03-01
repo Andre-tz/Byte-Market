@@ -4,6 +4,7 @@ import { CiDesktopMouse2, CiMonitor } from "react-icons/ci";
 import { FaHourglassEnd, FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdSupportAgent, MdOutlineSecurity } from "react-icons/md";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -16,8 +17,8 @@ const Home = () => {
             <p className="mt-4 max-w-2xl text-slate-300">{t("home.hero.subtitle")}</p>
         
             <div className="mt-6 flex flex-wrap gap-3">
-                <button className="rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{t("home.hero.primaryButton")}</button>
-                <button className="rounded-lg border border-cyan-400/40 bg-slate-900 px-5 py-2.5 text-sm font-semibold text-cyan-300 transition hover:bg-slate-800">{t("home.hero.secondaryButton")}</button>
+                <Link to={"/catalog"}><button className="cursor-pointer rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{t("home.hero.primaryButton")}</button> </Link>
+                <button className="cursor-pointer rounded-lg border border-cyan-400/40 bg-slate-900 px-5 py-2.5 text-sm font-semibold text-cyan-300 transition hover:bg-slate-800">{t("home.hero.secondaryButton")}</button>
             </div>
         </section>
 
