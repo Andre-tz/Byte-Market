@@ -1,15 +1,10 @@
 import { useEffect } from "react";
-import getApiProducts from "../../services/products.service";
+import useProducts from "../../hooks/useProducts";
 
+//este componente renderizará el catalogo inicial
 const Catalog = ()=>{
-    useEffect(()=>{
-        const fetchProducts = async ()=>{
-            const products = await getApiProducts();
-            console.log( products )
-        }
-        fetchProducts()
-    },[])
-
+    const { products } = useProducts();
+    useEffect(()=>{console.log( products)},[products] )
     return (
         <h1>Catalogo</h1>
     )
