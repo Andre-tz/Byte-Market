@@ -1,7 +1,7 @@
 //este hook se encargará de hacer las peticiones a las Apis
 
 import { useEffect, useState } from "react";
-import getApiProducts from "../services/products.service";
+import getProducts from "../services/products.service";
 import type { Product } from "../types/product.types";
 
 const useProducts = ()=>{
@@ -12,7 +12,7 @@ const useProducts = ()=>{
     useEffect(()=>{
         const fetchProducts =  async ()=>{
             try{
-                const data = await getApiProducts()
+                const data = await getProducts()
                 setProducts( data );
             }catch( error ){
                 const message = error instanceof Error? error.message : "Error desconocido"
