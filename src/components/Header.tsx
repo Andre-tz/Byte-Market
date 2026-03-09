@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import useLanguage from "../hooks/useLanguage";
+import { IoCartOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const { t  } = useTranslation();
@@ -42,7 +44,13 @@ const Header = () => {
                 <div className="flex items-center gap-2 text-sm">
                     <button onClick={ toggleLanguage } type="button"  className=" cursor-pointer rounded-md border border-cyan-400/35 bg-slate-900 px-3 py-2 font-semibold tracking-wide text-cyan-300 transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" >EN | ES</button>
                     <button type="button"  className=" cursor-pointer rounded-md border border-slate-700 bg-slate-900 px-3 py-2 transition hover:border-cyan-400/50">{t("header.account")}</button>
-                    <button type="button" className=" cursor-pointer rounded-md bg-slate-800 px-3 py-2 transition hover:bg-slate-700">{t("header.cart")}</button>
+                    <Link to={ "/cart" }>
+                        <button type="button" className="relative inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-700 bg-slate-900 text-slate-100 transition hover:border-cyan-400/50 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70"aria-label="Open cart">
+                            <IoCartOutline className="text-lg" />
+                            <span className="absolute -right-1.5 -top-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-cyan-400 px-1 text-[10px] font-bold text-slate-950">0</span>
+                        </button>
+                    </Link>
+
                 </div>
 
             </div>

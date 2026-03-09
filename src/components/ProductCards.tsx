@@ -1,5 +1,5 @@
 //este componente me mostrara las cartas de cada producto
-
+import { BsCartPlus } from "react-icons/bs";
 type Card = {
     id: number;
     name: string;
@@ -21,7 +21,7 @@ const ProductCards = ({ name, price, category, images }: Card) => {
 
                 <div className="flex items-center justify-between gap-3">
                     <p className="text-lg font-bold text-cyan-300">{price}</p>
-                    <button type="button" className="rounded-md bg-cyan-400 px-3 py-2 text-xs font-semibold text-slate-950 transition hover:bg-cyan-300">Carrito</button>
+                    <button type="button" className="rounded-md bg-cyan-400 px-3 py-2 text-s font-semibold text-slate-950 transition hover:bg-cyan-300"><BsCartPlus /></button>
                 </div>
 
             </div>
