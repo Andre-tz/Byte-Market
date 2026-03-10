@@ -3,7 +3,8 @@ import type { Product } from "../types/product.types";
 
 type CartContextType = {
     cart: Product[]
-    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+    addProductCart: ( product: Product )=> void;
+    removeProductCart : ( product: Product )=> void;
 }
 
 const CartContext = createContext<CartContextType | null>( null );
