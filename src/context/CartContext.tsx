@@ -2,7 +2,7 @@ import { createContext } from "react";
 import type { Product } from "../types/product.types";
 
 type CartContextType = {
-    cart: Product[]
+    cart: Product[];
     addProductCart: ( product: Product )=> void;
     removeProductCart : ( product: Product )=> void;
 }

@@ -27,12 +27,13 @@ const CartProvider = ( { children } : Props ) =>{
             return newCart;
         } )
     }
+
     //this useEffect update itself when cart changed
     useEffect( ()=>{
         localStorage.setItem( "userCart", JSON.stringify( cart ))
-    }, [ cart])
+    }, [ cart] )
     return(
-        <CartContext.Provider value={{ cart, addProductCart, removeProductCart}}>
+        <CartContext.Provider value={{ cart, addProductCart, removeProductCart }}>
             { children }
         </CartContext.Provider>
     )

@@ -2,7 +2,7 @@
 import { BsCartPlus } from "react-icons/bs";
 import { BsCartDash } from "react-icons/bs";
 import useCart from "../hooks/useCart"; 
-import { useState } from "react";
+
 type Card = {
     id: number;
     name: string;
@@ -13,13 +13,10 @@ type Card = {
 
 const ProductCards = ({ id, name, price, category, images }: Card) => {
     const { addProductCart, removeProductCart, cart } = useCart();
-    const [ isSelected, setIsSelected ] = useState<boolean>( false );
-
     const product = { id, name, price, category, images }
+    const isSelected = cart.some( productCard => productCard.id === product.id )
 
     const handleProduct = ()=>{
-        const isAdded = cart. some( productCart => productCart.id === product.id)
-        setIsSelected( isAdded );
         if( isSelected){ removeProductCart( product ) }else { addProductCart( product )}
     }
     return (
@@ -35,7 +32,7 @@ const ProductCards = ({ id, name, price, category, images }: Card) => {
                 <div className="flex items-center justify-between gap-3">
                     <p className="text-lg font-bold text-cyan-300">{price}</p>
                     <button type="button" onClick={ handleProduct }
-                        className={`rounded-md px-3 py-2 text-s font-semibold transition ${
+                        className={`cursor-pointer rounded-md px-3 py-2 text-s font-semibold transition ${
                             isSelected
                                 ? "bg-rose-400 text-slate-950 ring-1 ring-rose-300/70 hover:bg-rose-300 hover:ring-rose-200/80"
                                 : "bg-cyan-400 text-slate-950 hover:bg-cyan-300"
