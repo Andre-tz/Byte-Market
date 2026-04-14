@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/90 text-slate-100 backdrop-blur-md">
             <div className="mx-auto flex w-[min(1200px,94%)] flex-wrap items-center gap-4 py-3">
-                <a href="#" className="flex items-center gap-2" aria-label={t("header.aria.homeLink")}>
+                <Link to={ "/" } className="flex items-center gap-2" aria-label={t("header.aria.homeLink")}>
                     <span className="grid h-10 w-10 place-content-center rounded-lg bg-cyan-400 font-black text-slate-950 shadow-[0_0_18px_rgba(34,211,238,0.45)]">
                         BM
                     </span>
@@ -20,7 +20,7 @@ const Header = () => {
                         <p className="text-lg font-bold leading-none">{t("header.brand.name")}</p>
                         <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-300">{t("header.brand.tagline")}</p>
                     </div>
-                </a>
+                </Link>
 
                 <nav className="order-3 w-full md:order-0 md:w-auto" aria-label={t("header.aria.mainMenu")}>
                     <ul className="flex flex-wrap gap-2 text-sm md:gap-3">
