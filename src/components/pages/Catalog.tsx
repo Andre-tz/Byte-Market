@@ -21,6 +21,7 @@ const Catalog = () => {
                         price={product.price}
                         category={product.category}
                         images={product.images}
+                        stock={ product.stock }
                     />
                 )) 
                 }

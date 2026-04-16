@@ -12,7 +12,8 @@ const getProducts = async (): Promise<Product[]>=>{
         name: item.title,
         price: item.price,
         images: item.images,
-        category: "api"
+        category: "api",
+        stock: Math.floor( Math.random()* 10 ) + 1
    }))
 
    const mergeProducts = [ ...normalizedProducts, ...localProducts]

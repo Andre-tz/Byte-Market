@@ -2,6 +2,7 @@
 import { BsCartPlus } from "react-icons/bs";
 import { BsCartDash } from "react-icons/bs";
 import useCart from "../hooks/useCart"; 
+import formatPrice from "../helper/formatPrice";
 
 type Card = {
     id: number;
@@ -9,11 +10,12 @@ type Card = {
     price: number;
     category: string;
     images: string[];
+    stock: number;
 };
 
-const ProductCards = ({ id, name, price, category, images }: Card) => {
+const ProductCards = ({ id, name, price, category, images, stock }: Card) => {
     const { addProductCart, removeProductCart, cart } = useCart();
-    const product = { id, name, price, category, images }
+    const product = { id, name, price, category, images, stock }
     const isSelected = cart.some( productCard => productCard.id === product.id )
 
     const handleProduct = ()=>{
@@ -30,7 +32,7 @@ const ProductCards = ({ id, name, price, category, images }: Card) => {
                 <p className="line-clamp-2 min-h-12 text-sm font-semibold leading-6 text-slate-100">{ name }</p>
 
                 <div className="flex items-center justify-between gap-3">
-                    <p className="text-lg font-bold text-cyan-300">{price}</p>
+                    <p className="text-lg font-bold text-cyan-300">{ formatPrice( price ) }</p>
                     <button type="button" onClick={ handleProduct }
                         className={`cursor-pointer rounded-md px-3 py-2 text-s font-semibold transition ${
                             isSelected

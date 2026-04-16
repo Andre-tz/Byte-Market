@@ -5,6 +5,7 @@ export interface Product {
     price: number;
     category: string;
     images: string[];
+    stock: number;
 }
 
 export interface ApiProduct {
@@ -14,4 +15,5 @@ export interface ApiProduct {
     price: number;
     description: string;
     images: string[];
+    stock: number;
 }

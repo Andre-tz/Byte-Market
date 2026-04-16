@@ -11,6 +11,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/lenovo-legion-5.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 8,
     },
     {
       id: 1002,
@@ -19,6 +20,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/asus-tuf-a15.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 14,
     },
     {
       id: 1003,
@@ -27,6 +29,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/acer-nitro-5.jpg"],     
        images: ["/images/place-holder.webp"],
+      stock: 5,
     },
     {
       id: 1004,
@@ -35,6 +38,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/hp-victus-16.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 11,
     },
     {
       id: 1005,
@@ -43,6 +47,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/dell-g15.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 7,
     },
     {
       id: 1006,
@@ -51,6 +56,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/msi-katana-15.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 4,
     },
     {
       id: 1007,
@@ -59,6 +65,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/asus-rog-strix-g16.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 9,
     },
     {
       id: 1008,
@@ -67,6 +74,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/lenovo-loq-15.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 16,
     },
     {
       id: 1009,
@@ -75,6 +83,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/gigabyte-g5.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 6,
     },
     {
       id: 1010,
@@ -83,6 +92,7 @@ export const localProducts: Product[] = [
       category: "laptops",
       // images: ["/images/products/laptops/razer-blade-14.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 3,
     },  
     // =========================
     // Componentes + Monitores (10)
@@ -94,6 +104,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/amd-ryzen-7-7800x3d.jpg"],     
       images: ["/images/place-holder.webp"],
+      stock: 18,
     },
     {
       id: 2002,
@@ -102,6 +113,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/intel-core-i7-14700k.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 10,
     },
     {
       id: 2003,
@@ -110,6 +122,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/rtx-4070-super.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 5,
     },
     {
       id: 2004,
@@ -118,6 +131,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/rx-7800-xt.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 12,
     },
     {
       id: 2005,
@@ -126,6 +140,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/corsair-ddr5-32gb.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 17,
     },
     {
       id: 2006,
@@ -134,6 +149,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/samsung-990-pro-1tb.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 9,
     },
     {
       id: 2007,
@@ -142,6 +158,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/asus-b650-plus.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 4,
     },
     {
       id: 2008,
@@ -150,6 +167,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/corsair-rm750e.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 15,
     },
     {
       id: 2009,
@@ -158,6 +176,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/lg-ultragear-27-qhd.jpg"],     
        images: ["/images/place-holder.webp"],
+      stock: 7,
     },
     {
       id: 2010,
@@ -166,6 +185,7 @@ export const localProducts: Product[] = [
       category: "components",
       // images: ["/images/products/components/samsung-odyssey-g5-32.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 6,
     },  
     // =========================
     // Perifericos (10)
@@ -177,6 +197,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/logitech-g-pro-x-keyboard.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 13,
     },
     {
       id: 3002,
@@ -185,6 +206,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/keychron-k8-pro.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 8,
     },
     {
       id: 3003,
@@ -193,6 +215,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/logitech-g502x.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 19,
     },
     {
       id: 3004,
@@ -201,6 +224,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/razer-deathadder-v3.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 11,
     },
     {
       id: 3005,
@@ -209,6 +233,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/hyperx-cloud-ii.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 14,
     },
     {
       id: 3006,
@@ -217,6 +242,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/arctis-nova-7.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 6,
     },
     {
       id: 3007,
@@ -225,6 +251,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/logitech-g840.jpg"],    
        images: ["/images/place-holder.webp"],
+      stock: 20,
     },
     {
       id: 3008,
@@ -233,6 +260,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/logitech-c920.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 9,
     },
     {
       id: 3009,
@@ -241,6 +269,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/fifine-k688.jpg"],      
       images: ["/images/place-holder.webp"],
+      stock: 5,
     },
     {
       id: 3010,
@@ -249,6 +278,7 @@ export const localProducts: Product[] = [
       category: "peripherals",
       // images: ["/images/products/peripherals/cougar-armor-one.jpg"],     
        images: ["/images/place-holder.webp"],
+      stock: 3,
     },
 ]   
 
