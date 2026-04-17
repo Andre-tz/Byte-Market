@@ -37,7 +37,7 @@ const Footer = () => {
 
             <section>
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-cyan-300">{t("footer.community.title")}</p>
-                <p className="mt-3 text-sm">{t("footer.community.githubLabel")}{" "}<a href="https://github.com/Andre-tz"target="_blank"rel="noreferrer" className="text-cyan-300 underline decoration-cyan-400/50 underline-offset-4 transition hover:text-cyan-200">itsAndreDev</a></p>
+                <p className="mt-3 text-sm">{t("footer.community.githubLabel")}{" "}<a href="https://github.com/itsAndreDev"target="_blank"rel="noreferrer" className="text-cyan-300 underline decoration-cyan-400/50 underline-offset-4 transition hover:text-cyan-200">itsAndreDev</a></p>
             </section>
 
         </div>
