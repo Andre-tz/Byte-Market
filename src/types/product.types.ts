@@ -17,3 +17,7 @@ export interface ApiProduct {
     images: string[];
     stock: number;
 }
+
+export interface CartItem extends Product{
+    quantity: number 
+}

@@ -1,3 +1,4 @@
+// products selected by the user
 import { FaRegTrashAlt } from "react-icons/fa";
 import formatPrice from "../helper/formatPrice";
 type Item = {
@@ -17,7 +18,17 @@ const CartItem = ({ image, name, price }: Item) => {
             <div className="flex min-w-0 flex-1 items-center justify-between gap-4">
                 <div className="space-y-2">
                     <p className="line-clamp-2 text-sm font-semibold leading-6 text-slate-100">{name}</p>
-                    <p className="text-lg font-bold text-cyan-300">{ formatPrice( price ) }</p>
+                    <div>
+                        <p className="text-lg font-bold text-cyan-300">{ formatPrice( price ) }</p>
+                        <div className="mt-3 flex items-center gap-3">
+                            <p className="text-sm font-medium text-slate-400">Cantidad:</p>
+                            <div className="flex items-center overflow-hidden rounded-lg border border-slate-700 bg-slate-950/70">
+                                <button type="button" className="cursor-pointer px-3 py-2 text-sm font-semibold text-cyan-300 transition hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70">+</button>
+                                <input type="text" name="quantity" value={ 1 } readOnly className="w-12 border-x border-slate-700 bg-transparent text-center text-sm font-semibold text-slate-100 outline-none" />
+                                <button type="button" className="cursor-pointer px-3 py-2 text-sm font-semibold text-cyan-300 transition hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70">-</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <button type="button" aria-label={`Eliminar ${name} del carrito`} className="cursor-pointer rounded-md bg-rose-400 px-3 py-2 text-slate-950 ring-1 ring-rose-300/70 transition hover:bg-rose-300 hover:ring-rose-200/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-200">

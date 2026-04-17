@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import type { Product } from "../types/product.types"
+import type { CartItem, Product } from "../types/product.types"
 import CartContext from "../context/CartContext"
 type Props = {
     children: React.ReactNode
@@ -7,7 +7,7 @@ type Props = {
 
 const CartProvider = ( { children } : Props ) =>{
 
-    const [ cart, setCart ] = useState<Product[]>( ()=>{
+    const [ cart, setCart ] = useState<CartItem[]>( ()=>{
         const storedData = localStorage.getItem( "userCart" );
         if( !storedData ) return []
         try{
@@ -18,14 +18,12 @@ const CartProvider = ( { children } : Props ) =>{
     } )
     //functions
     const addProductCart =( product : Product)=>{
-        setCart( prevCart=>  [ ...prevCart, product] )
+       const newProduct = { ...product, quantity : 1 }
+        setCart( prevCart=>  [ ...prevCart, newProduct] )
     }
 
-    const removeProductCart = ( product: Product) =>{
-        setCart( prevCart =>{
-            const newCart = prevCart.filter( nameProd => nameProd.name !== product.name )
-            return newCart;
-        } )
+    const removeProductCart = ( id: number ) =>{
+        setCart( prevCart =>( prevCart.filter( idProd => idProd.id !== id ) ) )
     }
 
     //this useEffect update itself when cart changed
