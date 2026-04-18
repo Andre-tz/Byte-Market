@@ -5,8 +5,8 @@ type CartContextType = {
     cart: CartItem[];
     addProductCart: ( product: Product )=> void;
     removeProductCart : ( id: number )=> void;
-    //increaseQuantity: ( id: number ) => void;
-    //decreaseQuantity: ( id: number ) => void;
+    increaseQuantity: ( id: number ) => void;
+    decreaseQuantity: ( id: number ) => void;
 }
 
 const CartContext = createContext<CartContextType | null>( null );

@@ -54,9 +54,11 @@ const Cart = () => {
                                 {cart.map((item, index) => (
                                     <CartItem
                                         key={`${item.id}-${index}`}
+                                        id={ item.id }
                                         name={item.name}
                                         image={item.images}
                                         price={item.price}
+                                        quantity= { item.quantity}
                                     />
                                 ))}
                             </div>
