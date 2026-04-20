@@ -2,6 +2,7 @@ import useCart from "../../hooks/useCart";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import CartItem from "../CartItem";
 import { Link } from "react-router-dom";
+import CartSummary from "../CartSummary";
 
 
 //displays the shopping cart content
@@ -43,25 +44,31 @@ const Cart = () => {
                         <Link to="/catalog" className="mt-6 inline-flex rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Ir al catalogo</Link>
                     </section>
                 ) : (
-                    <section className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/40 p-4 sm:p-6">
-                        <div className="space-y-4">
-                            <div className="flex items-center justify-between gap-3 border-b border-slate-800 pb-4">
-                                <h2 className="text-xl font-semibold text-slate-100">Productos seleccionados</h2>
-                                <p className="text-sm text-slate-400">{totalProducts} item{totalProducts === 1 ? "" : "s"}</p>
-                            </div>
-
+                    <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start">
+                        <div className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/40 p-4 sm:p-6">
                             <div className="space-y-4">
-                                {cart.map((item, index) => (
-                                    <CartItem
-                                        key={`${item.id}-${index}`}
-                                        id={ item.id }
-                                        name={item.name}
-                                        image={item.images}
-                                        price={item.price}
-                                        quantity= { item.quantity}
-                                    />
-                                ))}
+                                <div className="flex items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                                    <h2 className="text-xl font-semibold text-slate-100">Productos seleccionados</h2>
+                                    <p className="text-sm text-slate-400">{totalProducts} item{totalProducts === 1 ? "" : "s"}</p>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {cart.map((item, index) => (
+                                        <CartItem
+                                            key={`${item.id}-${index}`}
+                                            id={ item.id }
+                                            name={item.name}
+                                            image={item.images}
+                                            price={item.price}
+                                            quantity= { item.quantity}
+                                        />
+                                    ))}
+                                </div>
                             </div>
+                        </div>
+
+                        <div className="xl:sticky xl:top-15">
+                            <CartSummary />
                         </div>
                     </section>
                 )
