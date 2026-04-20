@@ -3,7 +3,7 @@ import axiosInstance from "../api/axiosInstance";
 import { localProducts } from "../data/localProducts";
 import { type ApiProduct, type Product } from "../types/product.types";
 
-const getProducts = async (): Promise<Product[]>=>{
+const getProducts = async ( category? : string ): Promise<Product[]>=>{
 
     const { data } = await axiosInstance.get<ApiProduct[]>( "/products/?categorySlug=electronics" )
 
@@ -12,11 +12,15 @@ const getProducts = async (): Promise<Product[]>=>{
         name: item.title,
         price: item.price,
         images: item.images,
-        category: "api",
+        source: "api",
+        category: "offers",
         stock: Math.floor( Math.random()* 10 ) + 1
    }))
 
    const mergeProducts = [ ...normalizedProducts, ...localProducts]
+   //filter by categories
+   if( category ) { return mergeProducts.filter( product => product.category === category)}
+
    return mergeProducts;
 }
 export default getProducts;

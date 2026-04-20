@@ -24,11 +24,11 @@ const Header = () => {
 
                 <nav className="order-3 w-full md:order-0 md:w-auto" aria-label={t("header.aria.mainMenu")}>
                     <ul className="flex flex-wrap gap-2 text-sm md:gap-3">
-                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.home")}</a></li>
-                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.laptops")}</a></li>
-                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.components")}</a></li>
-                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.peripherals")}</a></li>
-                        <li><a href="#" className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.offers")}</a></li>
+                        <li><Link to={ "/"} className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.home")}</Link></li>
+                        <li><Link to={ "/laptops" } className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.laptops")}</Link></li>
+                        <li><Link to={ "/components"} className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.components")}</Link></li>
+                        <li><Link to={ "/peripherals"} className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.peripherals")}</Link></li>
+                        <li><Link to={ "offers"} className="rounded-md border border-transparent px-2 py-1 transition hover:border-cyan-400/50 hover:bg-slate-900">{t("header.nav.offers")}</Link></li>
                     </ul>
                 </nav>
 

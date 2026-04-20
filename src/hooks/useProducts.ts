@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import getProducts from "../services/products.service";
 import type { Product } from "../types/product.types";
 
-const useProducts = ()=>{
+const useProducts = ( category? : string)=>{
     const [ products, setProducts ] = useState<Product[]>( [] )
     const [ loading, setLoading ] = useState<boolean>( true );
     const [ error, setError ] = useState<string|null >( null );
@@ -12,7 +12,7 @@ const useProducts = ()=>{
     useEffect(()=>{
         const fetchProducts =  async ()=>{
             try{
-                const data = await getProducts()
+                const data = await getProducts( category )
                 setProducts( data );
             }catch( error ){
                 const message = error instanceof Error? error.message : "Error desconocido"
@@ -22,7 +22,7 @@ const useProducts = ()=>{
             }
         }
         fetchProducts();
-    }, [] )
+    }, [ category] )
     return { products, loading, error }
 }
 export default useProducts;

@@ -7,6 +7,10 @@ import Catalog from './components/pages/Catalog.tsx'
 import Cart from './components/pages/Cart.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CartProvider from './providers/CartProvider.tsx'
+import Laptops from './components/pages/Laptops.tsx'
+import Components from './components/pages/Components.tsx'
+import Peripherals from './components/pages/Peripherals.tsx'
+import Offers from './components/pages/Offers.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <CartProvider>
@@ -16,6 +20,10 @@ createRoot(document.getElementById('root')!).render(
                     <Route index element={<Home/>} />
                     <Route path='catalog' element={<Catalog/>} />
                     <Route path='cart' element={<Cart/>} />
+                    <Route path='laptops' element={<Laptops/>} />
+                    <Route path='components' element={<Components/>} />
+                    <Route path='peripherals' element={<Peripherals/>} />
+                    <Route path='offers' element={<Offers/>} />
                 </Route>
             </Routes>
         </BrowserRouter>        
