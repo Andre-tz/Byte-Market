@@ -3,6 +3,7 @@ import useLanguage from "../hooks/useLanguage";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
     const { t  } = useTranslation();
@@ -32,16 +33,7 @@ const Header = () => {
                     </ul>
                 </nav>
 
-                <form className="ml-auto flex flex-1 items-center gap-2 md:max-w-md" role="search">
-                    <label htmlFor="search" className="sr-only">{t("header.search.label")}</label>
-                    <input
-                        id="search"
-                        type="search"
-                        placeholder={t("header.search.placeholder")}
-                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm outline-none ring-cyan-400 placeholder:text-slate-400 focus:ring-2"
-                    />
-                    <button type="submit" className="rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{t("header.search.button")}</button>
-                </form>
+                <SearchBar />
 
                 <div className="flex items-center gap-2 text-sm">
                     <button onClick={ toggleLanguage } type="button"  className=" cursor-pointer rounded-md border border-cyan-400/35 bg-slate-900 px-3 py-2 font-semibold tracking-wide text-cyan-300 transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" >EN | ES</button>

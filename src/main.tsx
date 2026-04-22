@@ -11,6 +11,7 @@ import Laptops from './components/pages/Laptops.tsx'
 import Components from './components/pages/Components.tsx'
 import Peripherals from './components/pages/Peripherals.tsx'
 import Offers from './components/pages/Offers.tsx'
+import SearchPage from './components/pages/SearchPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <CartProvider>
@@ -19,11 +20,12 @@ createRoot(document.getElementById('root')!).render(
                 <Route path='/' element= {<App />}>
                     <Route index element={<Home/>} />
                     <Route path='catalog' element={<Catalog/>} />
-                    <Route path='cart' element={<Cart/>} />
                     <Route path='laptops' element={<Laptops/>} />
                     <Route path='components' element={<Components/>} />
                     <Route path='peripherals' element={<Peripherals/>} />
                     <Route path='offers' element={<Offers/>} />
+                    <Route path='search' element={<SearchPage/>} />
+                    <Route path='cart' element={<Cart/>} />
                 </Route>
             </Routes>
         </BrowserRouter>        
