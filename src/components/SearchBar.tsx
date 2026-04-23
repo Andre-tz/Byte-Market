@@ -8,7 +8,7 @@ const SearchBar = ( ) =>{
     const navigate = useNavigate();
 
     const handleChange = ( e:ChangeEvent<HTMLInputElement>)=>{
-        setSearch( e.target.value )
+        setSearch( e.target.value.trim() )
     }
 
     const handleSearch = ( e:React.FormEvent<HTMLFormElement> )=>{
