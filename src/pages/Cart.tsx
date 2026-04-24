@@ -1,8 +1,8 @@
-import useCart from "../../hooks/useCart";
+import useCart from "../hooks/useCart";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import CartItem from "../CartItem";
+import CartItem from "../components/cart/CartItem";
 import { Link } from "react-router-dom";
-import CartSummary from "../CartSummary";
+import CartSummary from "../components/cart/CartSummary";
 
 
 //displays the shopping cart content

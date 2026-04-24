@@ -1,5 +1,5 @@
-import type { Product } from "../types/product.types"
-import CardProductSkeleton from "./CardProductSkeleton"
+import type { Product } from "../../types/product.types"
+import CardProductSkeleton from "../ui/CardProductSkeleton"
 import ProductCards from "./ProductCards"
 
 type  typeGrid = {

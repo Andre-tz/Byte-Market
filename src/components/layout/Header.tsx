@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import useLanguage from "../hooks/useLanguage";
+import useLanguage from "../../hooks/useLanguage";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import useCart from "../hooks/useCart";
-import SearchBar from "./SearchBar";
+import useCart from "../../hooks/useCart";
+import SearchBar from "../ui/SearchBar";
 
 const Header = () => {
     const { t  } = useTranslation();

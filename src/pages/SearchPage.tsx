@@ -1,8 +1,8 @@
 // SearchPage reads the search query from the URL (q parameter),
 import { useSearchParams } from "react-router-dom";
-import useProducts from "../../hooks/useProducts";
-import ProductGrid from "../ProductGrid";
-import CardProductSkeleton from "../CardProductSkeleton";
+import useProducts from "../hooks/useProducts";
+import ProductGrid from "../components/product/ProductGrid";
+import CardProductSkeleton from "../components/ui/CardProductSkeleton";
 
 const SearchPage = ()=>{
     const { products, loading } = useProducts();

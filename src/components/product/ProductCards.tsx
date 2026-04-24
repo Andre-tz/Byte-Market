@@ -1,21 +1,15 @@
 //este componente me mostrara las cartas de cada producto
 import { BsCartPlus } from "react-icons/bs";
 import { BsCartCheckFill } from "react-icons/bs";
-import useCart from "../hooks/useCart"; 
-import formatPrice from "../helper/formatPrice";
+import useCart from "../../hooks/useCart"; 
+import formatPrice from "../../utils/formatPrice";
+import type { Product } from "../../types/product.types";
 
-type Card = {
-    id: number;
-    name: string;
-    price: number;
-    category: string;
-    images: string[];
-    stock: number;
-};
+type Card = Product;
 
-const ProductCards = ({ id, name, price, category, images, stock }: Card) => {
+const ProductCards = ({ id, name, price, source, category, images, stock }: Card) => {
     const { addProductCart, cart } = useCart();
-    const product = { id, name, price, category, images, stock }
+    const product = { id, name, price, source, category, images, stock }
     const isSelected = cart.some( productCard => productCard.id === product.id )
 
     const handleProduct = ()=>{

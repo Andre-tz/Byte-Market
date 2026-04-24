@@ -1,7 +1,7 @@
 // products selected by the user
 import { FaRegTrashAlt } from "react-icons/fa";
-import formatPrice from "../helper/formatPrice";
-import useCart from "../hooks/useCart";
+import formatPrice from "../../utils/formatPrice";
+import useCart from "../../hooks/useCart";
 type Item = {
     id: number;
     image: string[];

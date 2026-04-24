@@ -1,27 +1,27 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import MainLayout from './layouts/MainLayout.tsx'
 import "./i18n/index.ts"
-import Home from './components/pages/Home.tsx'
-import Catalog from './components/pages/Catalog.tsx'
-import Cart from './components/pages/Cart.tsx'
+import Home from './pages/Home.tsx'
+import Catalog from './pages/Catalog.tsx'
+import Cart from './pages/Cart.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CartProvider from './providers/CartProvider.tsx'
-import Laptops from './components/pages/Laptops.tsx'
-import Components from './components/pages/Components.tsx'
-import Peripherals from './components/pages/Peripherals.tsx'
-import Offers from './components/pages/Offers.tsx'
-import SearchPage from './components/pages/SearchPage.tsx'
+import Laptops from './pages/Laptops.tsx'
+import ComponentsPage from './pages/ComponentsPage.tsx'
+import Peripherals from './pages/Peripherals.tsx'
+import Offers from './pages/Offers.tsx'
+import SearchPage from './pages/SearchPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <CartProvider>
         <BrowserRouter>
             <Routes>
-                <Route path='/' element= {<App />}>
+                <Route path='/' element= {<MainLayout />}>
                     <Route index element={<Home/>} />
                     <Route path='catalog' element={<Catalog/>} />
                     <Route path='laptops' element={<Laptops/>} />
-                    <Route path='components' element={<Components/>} />
+                    <Route path='components' element={<ComponentsPage/>} />
                     <Route path='peripherals' element={<Peripherals/>} />
                     <Route path='offers' element={<Offers/>} />
                     <Route path='search' element={<SearchPage/>} />

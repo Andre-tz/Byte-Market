@@ -1,5 +1,5 @@
-import useProducts from "../../hooks/useProducts";
-import ProductGrid from "../ProductGrid";
+import useProducts from "../hooks/useProducts";
+import ProductGrid from "../components/product/ProductGrid";
 
 //este componente renderizara el catalogo inicial
 const Catalog = () => {

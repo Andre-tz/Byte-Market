@@ -13,6 +13,7 @@ const SearchBar = ( ) =>{
 
     const handleSearch = ( e:React.FormEvent<HTMLFormElement> )=>{
         e.preventDefault()
+        setSearch("")
         navigate( "/search?q=" + search)
     }
 

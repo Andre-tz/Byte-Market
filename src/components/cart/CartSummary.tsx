@@ -1,5 +1,5 @@
-import formatPrice from "../helper/formatPrice";
-import useCart from "../hooks/useCart";
+import formatPrice from "../../utils/formatPrice";
+import useCart from "../../hooks/useCart";
 
 const CartSummary = () => {
     const { getCartTotal, getDiscount, getShippingCost, getCartSubTotal } = useCart(); 
