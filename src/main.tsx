@@ -12,6 +12,7 @@ import ComponentsPage from './pages/ComponentsPage.tsx'
 import Peripherals from './pages/Peripherals.tsx'
 import Offers from './pages/Offers.tsx'
 import SearchPage from './pages/SearchPage.tsx'
+import AccountPage from './pages/AccountPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <CartProvider>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path='offers' element={<Offers/>} />
                     <Route path='search' element={<SearchPage/>} />
                     <Route path='cart' element={<Cart/>} />
+                    <Route path='account' element={<AccountPage/>} />
                 </Route>
             </Routes>
         </BrowserRouter>        
