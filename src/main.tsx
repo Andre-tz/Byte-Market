@@ -13,6 +13,8 @@ import Peripherals from './pages/Peripherals.tsx'
 import Offers from './pages/Offers.tsx'
 import SearchPage from './pages/SearchPage.tsx'
 import AccountPage from './pages/AccountPage.tsx'
+import LogInPage from './pages/LogInPage.tsx'
+import Register from './pages/Register.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <CartProvider>
@@ -28,6 +30,8 @@ createRoot(document.getElementById('root')!).render(
                     <Route path='search' element={<SearchPage/>} />
                     <Route path='cart' element={<Cart/>} />
                     <Route path='account' element={<AccountPage/>} />
+                    <Route path='login' element={<LogInPage/>} />
+                    <Route path='register' element={<Register/>} />
                 </Route>
             </Routes>
         </BrowserRouter>        

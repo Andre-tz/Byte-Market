@@ -2,6 +2,7 @@ import { FiLogIn } from "react-icons/fi";
 import { FaUserPlus } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TbShoppingBagCheck } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const AccountPage = () => {
   return (
@@ -27,7 +28,7 @@ const AccountPage = () => {
                 </div>
 
                 <div className="mt-6">
-                    <button className="w-full cursor-pointer rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_14px_30px_rgba(34,211,238,0.2)] transition hover:bg-cyan-300 hover:shadow-[0_18px_34px_rgba(34,211,238,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70">Iniciar Sesión</button>
+                    <Link to= "/login"><button className="w-full cursor-pointer rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_14px_30px_rgba(34,211,238,0.2)] transition hover:bg-cyan-300 hover:shadow-[0_18px_34px_rgba(34,211,238,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70">Iniciar Sesión</button></Link>
                 </div>
             </article>
 
@@ -43,7 +44,7 @@ const AccountPage = () => {
                 </div>
 
                 <div className="mt-6">
-                    <button className="w-full cursor-pointer rounded-xl border border-cyan-400/35 bg-slate-950/90 px-5 py-3 text-sm font-semibold text-cyan-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70">Crear cuenta</button>
+                    <Link to="/register"><button className="w-full cursor-pointer rounded-xl border border-cyan-400/35 bg-slate-950/90 px-5 py-3 text-sm font-semibold text-cyan-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70">Crear cuenta</button></Link>
                 </div>
             </article>
         </section>
