@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { LiaEyeSolid } from "react-icons/lia";
+import AuthInput from "../components/ui/AuthInput";
 //import { LiaEyeSlashSolid } from "react-icons/lia";
 
 const LogInPage = () => {
@@ -19,31 +20,21 @@ const LogInPage = () => {
                     <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-36 bg-linear-to-r from-cyan-400/10 to-transparent" />
 
                     <form action="" className="space-y-5">
-                        <div className="space-y-2">
-                            <label htmlFor="email" className="block text-sm font-medium tracking-wide text-slate-200">Correo electrónico</label>
-                            <input
-                                className="w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 hover:border-slate-600 focus:border-cyan-400/70 focus:ring-4 focus:ring-cyan-400/10"
-                                type="email"
-                                name="email"
-                                id="email"
-                                placeholder="tucorreo@ejemplo.com"
-                            />
-                        </div>
+                        <AuthInput 
+                            labelText="Correo electrónico"
+                            inputType="text"
+                            id="email"
+                            placeholder="tucorreo@ejemplo.com"
+                        />
 
-                        <div className="space-y-2">
-                            <label htmlFor="password" className="block text-sm font-medium tracking-wide text-slate-200">Contraseña</label>
-                            <div className="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-slate-100 transition hover:border-slate-600 focus-within:border-cyan-400/70 focus-within:ring-4 focus-within:ring-cyan-400/10">
-                                <input
-                                    className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    placeholder="Ingresa tu contraseña"
-                                />
-                                <span className="text-lg text-slate-500 transition hover:text-cyan-300"><LiaEyeSolid /></span>
-                            </div>
-                        </div>
-
+                        <AuthInput 
+                            labelText="Contraseña"
+                            inputType="password"
+                            id="password"
+                            placeholder="Ingresa tu contraseña"
+                            icon= { <LiaEyeSolid/> }
+                        />
+                        
                         <div className="flex justify-end">
                             <Link className="text-sm font-medium text-cyan-300 transition hover:text-cyan-200 hover:underline" to="/">¿Olvidaste tu contraseña?</Link>
                         </div>
