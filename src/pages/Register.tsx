@@ -10,7 +10,7 @@ const Register = () => {
                 <section className="mb-6 text-center">
                     <span className="mb-4 inline-flex rounded-full border border-cyan-400/25 bg-cyan-400/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-300">Byte Market Join</span>
                     <h1 className="text-3xl font-bold leading-tight text-slate-100 md:text-5xl">Crea tu cuenta</h1>
-                    <p className="mt-4 text-sm leading-7 text-slate-400 md:text-base">Regístrate para guardar tus productos favoritos, gestionar tus pedidos ydisfrutar una experiencia de compra más rápida en Byte Market.</p>
+                    <p className="mt-4 text-sm leading-7 text-slate-400 md:text-base">Regístrate para guardar tus productos favoritos, gestionar tus pedidos y disfrutar una experiencia de compra más rápida en Byte Market.</p>
                 </section>
 
                 <div className="relative overflow-hidden rounded-4xl border border-cyan-400/20 bg-linear-to-br from-slate-900 via-slate-900/95 to-slate-950 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.5)] ring-1 ring-white/5 md:p-8">
