@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { LiaEyeSolid } from "react-icons/lia";
 import AuthInput from "../components/ui/AuthInput";
 //import { LiaEyeSlashSolid } from "react-icons/lia";
 
@@ -22,17 +21,17 @@ const LogInPage = () => {
                     <form action="" className="space-y-5">
                         <AuthInput 
                             labelText="Correo electrónico"
-                            inputType="text"
+                            type="text"
                             id="email"
                             placeholder="tucorreo@ejemplo.com"
                         />
 
                         <AuthInput 
                             labelText="Contraseña"
-                            inputType="password"
+                            type="password"
                             id="password"
                             placeholder="Ingresa tu contraseña"
-                            icon= { <LiaEyeSolid/> }
+                            showPasswordToggle= { true }
                         />
                         
                         <div className="flex justify-end">

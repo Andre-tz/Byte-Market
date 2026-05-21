@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
-import { LiaEyeSolid } from "react-icons/lia";
 
 const Register = () => {
     return (
@@ -21,21 +20,21 @@ const Register = () => {
                     <form action="" className="space-y-5">
                         <AuthInput
                             labelText="Nombres"
-                            inputType="text"
+                            type="text"
                             id="name"
                             placeholder="Ingresa tu nombre"
                         />
 
                         <AuthInput
                             labelText="Apellidos"
-                            inputType="text"
+                            type="text"
                             id="last-name"
                             placeholder="Ingresa tus apellidos"
                         />
 
                         <AuthInput
                             labelText="Correo electrónico"
-                            inputType="email"
+                            type="email"
                             id="email"
                             placeholder="tucorreo@ejemplo.com"
                         />
@@ -43,10 +42,10 @@ const Register = () => {
                         <div className="space-y-2">
                             <AuthInput
                                 labelText="Contraseña"
-                                inputType="password"
+                                type="password"
                                 id="password"
                                 placeholder="Crea una contraseña"
-                                icon={ <LiaEyeSolid />}
+                                showPasswordToggle={ true }
                             />
                             <p className="text-sm leading-6 text-slate-500">
                                 Usa al menos 8 caracteres, una mayúscula y un número.
@@ -56,10 +55,10 @@ const Register = () => {
                         <div className="space-y-2">
                             <AuthInput
                                 labelText="Confirmar contraseña"
-                                inputType="password"
+                                type="password"
                                 id="confirm-password"
                                 placeholder="Vuelve a escribir tu contraseña"
-                                icon={ <LiaEyeSolid />}
+                                showPasswordToggle={ true }
                             />
                             <p className="text-sm leading-6 text-slate-500">Debe coincidir con la contraseña anterior.</p>
                         </div>
