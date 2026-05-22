@@ -7,12 +7,16 @@ type Props = {
 }
 
 const AuthProvider = ( { children } : Props )=>{
-    const [ user, setUser ] = useState<UserType>( {
-        name: "",
-        lastName: "",
-        email: "",
-        password:""
-    } )
+    const [ user, setUser ] = useState<UserType>( ()=>{
+        const storedData = localStorage.getItem( "userAuth")
+        if( !storedData ) return { name: "", lastName: "", email: "", password:"" }
+
+        try{
+            return JSON.parse( storedData )
+        }catch{
+            return { name: "", lastName: "", email: "", password:"" }
+        }
+    })
 
     return (
         <AuthContext.Provider value={ { user, setUser } }>

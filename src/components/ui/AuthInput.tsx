@@ -7,16 +7,13 @@ type Input ={
     type: string;
     id: string;
     placeholder: string
+    value: string
     showPasswordToggle?: boolean
+    handleValue: ( e: React.ChangeEvent<HTMLInputElement> )=>void
 }
-const AuthInput = ( { labelText, type, id, placeholder, showPasswordToggle } : Input )=>{
-    const [ inputValue, setInputValue ] = useState<string>( "" );
+const AuthInput = ( { labelText, type, id, placeholder, value, showPasswordToggle, handleValue } : Input )=>{
     const [ currentType, setCurrentType ] = useState<string>( type );
 
-    const handleValue = ( event : React.ChangeEvent<HTMLInputElement>)=>{
-        setInputValue( event.target.value )
-    }
-    
     const handleType = () =>{
         if( type!= "password" ) return
         setCurrentType( currentType==="password"? "text" : "password")
@@ -31,8 +28,8 @@ const AuthInput = ( { labelText, type, id, placeholder, showPasswordToggle } : I
                     type={ type === "password"? currentType : type  }
                     name={ id }
                     id={ id }
-                    value={ inputValue }
-                    onChange={ handleValue }
+                    value={ value }
+                    onChange = { handleValue }
                     placeholder={ placeholder }/>
                 { showPasswordToggle && (
                     <span className="cursor-pointer text-lg text-slate-500 transition hover:text-cyan-300" onClick={ handleType }>{ currentType==="text"? <LiaEyeSlash/> : <LiaEyeSolid /> }</span>

@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
+import { useState } from "react";
 
+type RegisterData ={
+    name: string,
+    lastName: string,
+    email: string,
+    password: string
+}
 const Register = () => {
+    const [ registerData, setRegisterData] = useState<RegisterData>( { name: "", lastName: "", email: "", password: "" } )
+
+    const handleRegister = ( e: React.ChangeEvent<HTMLInputElement>)=>{
+        const { id, value } = e.target
+
+        setRegisterData( prev => (
+            {
+                ...prev,
+                [ id ] : value 
+            }
+        ))
+    }
     return (
         <main className="relative overflow-hidden py-12 md:py-16">
             <div className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
@@ -23,13 +42,17 @@ const Register = () => {
                             type="text"
                             id="name"
                             placeholder="Ingresa tu nombre"
+                            value={ registerData.name }
+                            handleValue={ handleRegister }
                         />
 
                         <AuthInput
                             labelText="Apellidos"
                             type="text"
-                            id="last-name"
+                            id="lastName"
                             placeholder="Ingresa tus apellidos"
+                            value={ registerData.lastName }
+                            handleValue={ handleRegister }
                         />
 
                         <AuthInput
@@ -37,6 +60,8 @@ const Register = () => {
                             type="email"
                             id="email"
                             placeholder="tucorreo@ejemplo.com"
+                            value={ registerData.email }
+                            handleValue={ handleRegister }
                         />
 
                         <div className="space-y-2">
@@ -46,6 +71,8 @@ const Register = () => {
                                 id="password"
                                 placeholder="Crea una contraseña"
                                 showPasswordToggle={ true }
+                                value={ registerData.password }
+                                handleValue={ handleRegister }
                             />
                             <p className="text-sm leading-6 text-slate-500">
                                 Usa al menos 8 caracteres, una mayúscula y un número.
@@ -59,6 +86,8 @@ const Register = () => {
                                 id="confirm-password"
                                 placeholder="Vuelve a escribir tu contraseña"
                                 showPasswordToggle={ true }
+                                value={ registerData.password }
+                                handleValue={ handleRegister }
                             />
                             <p className="text-sm leading-6 text-slate-500">Debe coincidir con la contraseña anterior.</p>
                         </div>
