@@ -1,9 +1,10 @@
 import { createContext } from "react";
-import type { UserType } from "../types/user.types";
+import type { RegisterFormData, User } from "../types/user.types";
 
 type AuthContextType = {
-    user: null |UserType
-    setUser : React.Dispatch<React.SetStateAction<UserType>> | null;
+    user: User
+    setUser : React.Dispatch<React.SetStateAction<User>>;
+    userRegister : ( data : RegisterFormData ) => void
 }
 
 const AuthContext = createContext<AuthContextType | null>( null );

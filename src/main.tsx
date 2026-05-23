@@ -7,6 +7,7 @@ import Catalog from './pages/Catalog.tsx'
 import Cart from './pages/Cart.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CartProvider from './providers/CartProvider.tsx'
+import AuthProvider from './providers/AuthProvider.tsx'
 import Laptops from './pages/Laptops.tsx'
 import ComponentsPage from './pages/ComponentsPage.tsx'
 import Peripherals from './pages/Peripherals.tsx'
@@ -17,23 +18,25 @@ import LogInPage from './pages/LogInPage.tsx'
 import Register from './pages/Register.tsx'
 
 createRoot(document.getElementById('root')!).render(
-    <CartProvider>
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element= {<MainLayout />}>
-                    <Route index element={<Home/>} />
-                    <Route path='catalog' element={<Catalog/>} />
-                    <Route path='laptops' element={<Laptops/>} />
-                    <Route path='components' element={<ComponentsPage/>} />
-                    <Route path='peripherals' element={<Peripherals/>} />
-                    <Route path='offers' element={<Offers/>} />
-                    <Route path='search' element={<SearchPage/>} />
-                    <Route path='cart' element={<Cart/>} />
-                    <Route path='account' element={<AccountPage/>} />
-                    <Route path='login' element={<LogInPage/>} />
-                    <Route path='register' element={<Register/>} />
-                </Route>
-            </Routes>
-        </BrowserRouter>        
-    </CartProvider>
+    <AuthProvider>
+        <CartProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element= {<MainLayout />}>
+                        <Route index element={<Home/>} />
+                        <Route path='catalog' element={<Catalog/>} />
+                        <Route path='laptops' element={<Laptops/>} />
+                        <Route path='components' element={<ComponentsPage/>} />
+                        <Route path='peripherals' element={<Peripherals/>} />
+                        <Route path='offers' element={<Offers/>} />
+                        <Route path='search' element={<SearchPage/>} />
+                        <Route path='cart' element={<Cart/>} />
+                        <Route path='account' element={<AccountPage/>} />
+                        <Route path='login' element={<LogInPage/>} />
+                        <Route path='register' element={<Register/>} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>        
+        </CartProvider>
+    </AuthProvider>
 )

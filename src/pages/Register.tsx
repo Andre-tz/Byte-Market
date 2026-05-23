@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
-import { useState } from "react";
+import React, { useState } from "react";
+import type { RegisterFormData  } from "../types/user.types";
+import useAuth from "../hooks/useAuth";
 
-type RegisterData ={
-    name: string,
-    lastName: string,
-    email: string,
-    password: string
-}
 const Register = () => {
-    const [ registerData, setRegisterData] = useState<RegisterData>( { name: "", lastName: "", email: "", password: "" } )
+    const { userRegister } = useAuth(); 
+    const [ registerData, setRegisterData] = useState<RegisterFormData>( { name: "", lastName: "", email: "", password: "", confirmPassword: "" } )
 
-    const handleRegister = ( e: React.ChangeEvent<HTMLInputElement>)=>{
+    const handleDataRegister = ( e: React.ChangeEvent<HTMLInputElement>)=>{
         const { id, value } = e.target
 
         setRegisterData( prev => (
@@ -20,6 +17,11 @@ const Register = () => {
                 [ id ] : value 
             }
         ))
+    }
+
+    const handleUserDataRegister = ( e: React.SubmitEvent<HTMLFormElement>) =>{
+        e.preventDefault();
+        userRegister( registerData )
     }
     return (
         <main className="relative overflow-hidden py-12 md:py-16">
@@ -36,14 +38,14 @@ const Register = () => {
                     <div className="pointer-events-none absolute -right-16 top-0 h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl" />
                     <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-36 bg-linear-to-r from-cyan-400/10 to-transparent" />
 
-                    <form action="" className="space-y-5">
+                    <form onSubmit={ handleUserDataRegister } action="" className="space-y-5">
                         <AuthInput
                             labelText="Nombres"
                             type="text"
                             id="name"
                             placeholder="Ingresa tu nombre"
                             value={ registerData.name }
-                            handleValue={ handleRegister }
+                            handleValue={ handleDataRegister }
                         />
 
                         <AuthInput
@@ -52,7 +54,7 @@ const Register = () => {
                             id="lastName"
                             placeholder="Ingresa tus apellidos"
                             value={ registerData.lastName }
-                            handleValue={ handleRegister }
+                            handleValue={ handleDataRegister }
                         />
 
                         <AuthInput
@@ -61,7 +63,7 @@ const Register = () => {
                             id="email"
                             placeholder="tucorreo@ejemplo.com"
                             value={ registerData.email }
-                            handleValue={ handleRegister }
+                            handleValue={ handleDataRegister }
                         />
 
                         <div className="space-y-2">
@@ -72,7 +74,7 @@ const Register = () => {
                                 placeholder="Crea una contraseña"
                                 showPasswordToggle={ true }
                                 value={ registerData.password }
-                                handleValue={ handleRegister }
+                                handleValue={ handleDataRegister }
                             />
                             <p className="text-sm leading-6 text-slate-500">
                                 Usa al menos 8 caracteres, una mayúscula y un número.
@@ -83,11 +85,12 @@ const Register = () => {
                             <AuthInput
                                 labelText="Confirmar contraseña"
                                 type="password"
-                                id="confirm-password"
+                                id="confirmPassword"
                                 placeholder="Vuelve a escribir tu contraseña"
                                 showPasswordToggle={ true }
-                                value={ registerData.password }
-                                handleValue={ handleRegister }
+                                value={ registerData.confirmPassword }
+                                handleValue={ handleDataRegister }
+                                isPasswordMatching = { registerData.confirmPassword === registerData.password }
                             />
                             <p className="text-sm leading-6 text-slate-500">Debe coincidir con la contraseña anterior.</p>
                         </div>
