@@ -1,28 +1,47 @@
 import { Link } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
 import React, { useState } from "react";
-import type { RegisterFormData  } from "../types/user.types";
+import type { RegisterFormData } from "../types/user.types";
 import useAuth from "../hooks/useAuth";
 
 const Register = () => {
-    const { userRegister } = useAuth(); 
-    const [ registerData, setRegisterData] = useState<RegisterFormData>( { name: "", lastName: "", email: "", password: "", confirmPassword: "" } )
+    const { userRegister } = useAuth();
+    const [ registerData, setRegisterData ] = useState<RegisterFormData>( { name: "", lastName: "", email: "", password: "", confirmPassword: "" } );
 
-    const handleDataRegister = ( e: React.ChangeEvent<HTMLInputElement>)=>{
-        const { id, value } = e.target
+    const handleDataRegister = ( e: React.ChangeEvent<HTMLInputElement> ) => {
+        const { id, value } = e.target;
 
         setRegisterData( prev => (
             {
                 ...prev,
-                [ id ] : value 
+                [ id ]: value
             }
-        ))
-    }
+        ) );
+    };
 
-    const handleUserDataRegister = ( e: React.SubmitEvent<HTMLFormElement>) =>{
+    const validatePassword = ( password: string ) => {
+        return {
+            minLength: password.length >= 8,
+            hasNumber: /\d/.test( password ),
+            hasUpperCase: /[A-Z]/.test( password )
+        };
+    };
+
+    const passwordValidation = validatePassword( registerData.password );
+    const perfectPasword = passwordValidation.hasNumber && passwordValidation.hasUpperCase && passwordValidation.minLength && registerData.password === registerData.confirmPassword 
+    const createAccount = perfectPasword 
+
+    const handleUserDataRegister = ( e: React.FormEvent<HTMLFormElement> ) => {
         e.preventDefault();
-        userRegister( registerData )
-    }
+        if( createAccount){
+            console.log( "cuenta creada" )
+            userRegister( registerData );
+        }else{
+            console.log("cuenta no creada")
+        }
+        
+    };
+
     return (
         <main className="relative overflow-hidden py-12 md:py-16">
             <div className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
@@ -75,10 +94,8 @@ const Register = () => {
                                 showPasswordToggle={ true }
                                 value={ registerData.password }
                                 handleValue={ handleDataRegister }
+                                validation={ passwordValidation }
                             />
-                            <p className="text-sm leading-6 text-slate-500">
-                                Usa al menos 8 caracteres, una mayúscula y un número.
-                            </p>
                         </div>
 
                         <div className="space-y-2">
@@ -90,16 +107,15 @@ const Register = () => {
                                 showPasswordToggle={ true }
                                 value={ registerData.confirmPassword }
                                 handleValue={ handleDataRegister }
-                                isPasswordMatching = { registerData.confirmPassword === registerData.password }
+                                isPasswordMatching={ registerData.confirmPassword === registerData.password }
                             />
-                            <p className="text-sm leading-6 text-slate-500">Debe coincidir con la contraseña anterior.</p>
                         </div>
 
                         <div className="flex justify-end">
-                            <Link className="text-sm font-medium text-cyan-300 transition hover:text-cyan-200 hover:underline"to="/login">¿Ya tienes cuenta? Inicia sesión</Link>
+                            <Link className="text-sm font-medium text-cyan-300 transition hover:text-cyan-200 hover:underline" to="/login">¿Ya tienes cuenta? Inicia sesión</Link>
                         </div>
 
-                        <button className="w-full cursor-pointer rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_16px_34px_rgba(34,211,238,0.2)] transition hover:bg-cyan-300 hover:shadow-[0_20px_40px_rgba(34,211,238,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70"type="submit">Crear cuenta</button>
+                        <button className={`${ createAccount? "cursor-pointer" : "cursor-not-allowed"} w-full  rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_16px_34px_rgba(34,211,238,0.2)] transition hover:bg-cyan-300 hover:shadow-[0_20px_40px_rgba(34,211,238,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70`} type="submit">Crear cuenta</button>
 
                         <div className="text-center">
                             <h3 className="text-sm leading-6 text-slate-500">Tus datos se gestionan de forma segura.</h3>
