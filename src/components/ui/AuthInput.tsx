@@ -12,9 +12,11 @@ type Input = {
     handleValue: ( e: React.ChangeEvent<HTMLInputElement> ) => void;
     isPasswordMatching?: boolean;
     validation?: { minLength: boolean, hasNumber: boolean, hasUpperCase: boolean };
+    isEmpty : boolean
+    message: string
 }
 
-const AuthInput = ( { labelText, type, id, placeholder, value, showPasswordToggle, handleValue, isPasswordMatching, validation }: Input ) => {
+const AuthInput = ( { labelText, type, id, placeholder, value, showPasswordToggle, handleValue, isPasswordMatching, validation, isEmpty, message }: Input ) => {
     const [ currentType, setCurrentType ] = useState<string>( type );
     const hasPasswordMismatch = isPasswordMatching === false;
     const messagesValidationPassword = validation
@@ -27,7 +29,7 @@ const AuthInput = ( { labelText, type, id, placeholder, value, showPasswordToggl
 
     const showMessages = value.length > 0 && messagesValidationPassword.length > 0;
     const showMismatchMessage = value.length > 0 && hasPasswordMismatch;
-    const hasError = hasPasswordMismatch || showMessages;
+    const hasError = hasPasswordMismatch || showMessages || isEmpty
 
     const handleType = () => {
         if ( type != "password" ) return;
@@ -80,9 +82,9 @@ const AuthInput = ( { labelText, type, id, placeholder, value, showPasswordToggl
             </div>
 
             { showMessages && (
-                <div className="space-y-1 rounded-xl border border-red-500/20 bg-red-950/10 px-3 py-2">
+                <div className="space-y-1 rounded-xl border border-red-500/20 bg-red-950/15 px-3 py-2 shadow-[0_10px_24px_rgba(127,29,29,0.12)] ring-1 ring-inset ring-red-500/10">
                     { messagesValidationPassword.map( ( message ) => (
-                        <p key={ message } className="text-sm leading-5 text-red-200">
+                        <p key={ message } className="text-sm leading-5 text-red-100">
                             { message }
                         </p>
                     )) }
@@ -90,8 +92,14 @@ const AuthInput = ( { labelText, type, id, placeholder, value, showPasswordToggl
             )}
 
             { showMismatchMessage && (
-                <p className="text-sm leading-5 text-red-300">
+                <p className="rounded-xl border border-red-500/20 bg-red-950/15 px-3 py-2 text-sm leading-5 text-red-100 shadow-[0_10px_24px_rgba(127,29,29,0.12)] ring-1 ring-inset ring-red-500/10">
                     Las contraseñas no coinciden
+                </p>
+            )}
+
+            { isEmpty && (
+                <p className="rounded-xl border border-red-500/20 bg-red-950/15 px-3 py-2 text-sm leading-5 text-red-100 shadow-[0_10px_24px_rgba(127,29,29,0.12)] ring-1 ring-inset ring-red-500/10">
+                    { message }
                 </p>
             )}
         </div>

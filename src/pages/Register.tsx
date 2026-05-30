@@ -3,43 +3,40 @@ import AuthInput from "../components/ui/AuthInput";
 import React, { useState } from "react";
 import type { RegisterFormData } from "../types/user.types";
 import useAuth from "../hooks/useAuth";
+import validatePassword from "../utils/validatePassword";
+import isEmptyFields  from "../utils/isEmptyFields";
 
 const Register = () => {
     const { userRegister } = useAuth();
     const [ registerData, setRegisterData ] = useState<RegisterFormData>( { name: "", lastName: "", email: "", password: "", confirmPassword: "" } );
+    const [ isSubmitted, setIsSubmitted ] = useState<boolean>( false )
 
-    const handleDataRegister = ( e: React.ChangeEvent<HTMLInputElement> ) => {
-        const { id, value } = e.target;
+    const handleDataRegister = ( event: React.ChangeEvent<HTMLInputElement> )=>{
+        const { id, value } = event.target;
 
-        setRegisterData( prev => (
-            {
-                ...prev,
-                [ id ]: value
-            }
-        ) );
-    };
-
-    const validatePassword = ( password: string ) => {
-        return {
-            minLength: password.length >= 8,
-            hasNumber: /\d/.test( password ),
-            hasUpperCase: /[A-Z]/.test( password )
-        };
-    };
+        setRegisterData( prev=>({
+            ...prev,
+            [ id ] : value
+        }))
+    }
 
     const passwordValidation = validatePassword( registerData.password );
-    const perfectPasword = passwordValidation.hasNumber && passwordValidation.hasUpperCase && passwordValidation.minLength && registerData.password === registerData.confirmPassword 
-    const createAccount = perfectPasword 
+    const perfectPasword = 
+        passwordValidation.hasNumber && 
+        passwordValidation.hasUpperCase && 
+        passwordValidation.minLength && registerData.password === registerData.confirmPassword 
 
     const handleUserDataRegister = ( e: React.FormEvent<HTMLFormElement> ) => {
-        e.preventDefault();
-        if( createAccount){
-            console.log( "cuenta creada" )
-            userRegister( registerData );
+        e.preventDefault()
+        const isEmptyCells = isEmptyFields( registerData)
+        setIsSubmitted( true )
+
+        if( !isEmptyCells && perfectPasword ){
+            userRegister( registerData )
+            console.log("formulario enviado")
         }else{
-            console.log("cuenta no creada")
+            console.log("algo anda mal")
         }
-        
     };
 
     return (
@@ -65,6 +62,8 @@ const Register = () => {
                             placeholder="Ingresa tu nombre"
                             value={ registerData.name }
                             handleValue={ handleDataRegister }
+                            isEmpty= { isSubmitted && !registerData.name.trim() }
+                            message= { "Falta colocar tu nombre"}
                         />
 
                         <AuthInput
@@ -74,6 +73,8 @@ const Register = () => {
                             placeholder="Ingresa tus apellidos"
                             value={ registerData.lastName }
                             handleValue={ handleDataRegister }
+                            isEmpty= { isSubmitted && !registerData.lastName.trim() }
+                            message= { "Falta colocar tus apellidos"}
                         />
 
                         <AuthInput
@@ -83,6 +84,8 @@ const Register = () => {
                             placeholder="tucorreo@ejemplo.com"
                             value={ registerData.email }
                             handleValue={ handleDataRegister }
+                            isEmpty= { isSubmitted && !registerData.email.trim() }
+                            message= { "Falta colocar tu email"}
                         />
 
                         <div className="space-y-2">
@@ -95,6 +98,8 @@ const Register = () => {
                                 value={ registerData.password }
                                 handleValue={ handleDataRegister }
                                 validation={ passwordValidation }
+                                isEmpty= { isSubmitted && !registerData.password.trim() }
+                                message= { "Falta colocar tu contraseña"}
                             />
                         </div>
 
@@ -108,6 +113,8 @@ const Register = () => {
                                 value={ registerData.confirmPassword }
                                 handleValue={ handleDataRegister }
                                 isPasswordMatching={ registerData.confirmPassword === registerData.password }
+                                isEmpty= { isSubmitted && !registerData.confirmPassword.trim() }
+                                message= { "Falta confirmar tu constraseña"}
                             />
                         </div>
 
@@ -115,7 +122,7 @@ const Register = () => {
                             <Link className="text-sm font-medium text-cyan-300 transition hover:text-cyan-200 hover:underline" to="/login">¿Ya tienes cuenta? Inicia sesión</Link>
                         </div>
 
-                        <button className={`${ createAccount? "cursor-pointer" : "cursor-not-allowed"} w-full  rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_16px_34px_rgba(34,211,238,0.2)] transition hover:bg-cyan-300 hover:shadow-[0_20px_40px_rgba(34,211,238,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70`} type="submit">Crear cuenta</button>
+                        <button className="cursor-pointer w-full  rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_16px_34px_rgba(34,211,238,0.2)] transition hover:bg-cyan-300 hover:shadow-[0_20px_40px_rgba(34,211,238,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" type="submit">Crear cuenta</button>
 
                         <div className="text-center">
                             <h3 className="text-sm leading-6 text-slate-500">Tus datos se gestionan de forma segura.</h3>

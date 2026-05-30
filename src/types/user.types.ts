@@ -8,3 +8,5 @@ export interface User  {
 export interface RegisterFormData extends User {
     confirmPassword: string
 }
+
+export type LoginFormData = Pick<User, "email" | "password" >

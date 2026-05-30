@@ -3,6 +3,7 @@ import AuthInput from "../components/ui/AuthInput";
 //import { LiaEyeSlashSolid } from "react-icons/lia";
 
 const LogInPage = () => {
+
     return (
         <main className="relative overflow-hidden py-12 md:py-16">
             <div className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
