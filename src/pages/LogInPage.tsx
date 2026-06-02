@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
+import { useState} from "react";
+import type { LoginFormData } from "../types/user.types";
 //import { LiaEyeSlashSolid } from "react-icons/lia";
 
 const LogInPage = () => {
+    const [ loginData, setLoginData ] = useState<LoginFormData>( { email: "", password: ""} );
+    const [ isSubmitted, setIsSubmitted ] = useState<boolean>( false )
+
+    const handleLoginData = ( event : React.ChangeEvent<HTMLInputElement>) =>{
+        const { id, value } = event.target;
+        setLoginData( prev => ( {
+            ...prev,
+            [ id ]: value
+        }))
+    }
+
+    const handeUserLoginData = ( event: React.SubmitEvent<HTMLFormElement> ) =>{
+        event.preventDefault()
+        setIsSubmitted( true )
+    }
 
     return (
         <main className="relative overflow-hidden py-12 md:py-16">
@@ -19,12 +36,16 @@ const LogInPage = () => {
                     <div className="pointer-events-none absolute -right-16 top-0 h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl" />
                     <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-36 bg-linear-to-r from-cyan-400/10 to-transparent" />
 
-                    <form action="" className="space-y-5">
+                    <form action="" onSubmit={ handeUserLoginData } className="space-y-5">
                         <AuthInput 
                             labelText="Correo electrónico"
                             type="text"
                             id="email"
                             placeholder="tucorreo@ejemplo.com"
+                            value={ loginData.email }
+                            handleValue={ handleLoginData }
+                            isEmpty= { isSubmitted && loginData.email.trim() === ""}
+                            message="Falta ingresar el correo"
                         />
 
                         <AuthInput 
@@ -33,6 +54,10 @@ const LogInPage = () => {
                             id="password"
                             placeholder="Ingresa tu contraseña"
                             showPasswordToggle= { true }
+                            value= { loginData.password}
+                            handleValue={ handleLoginData }
+                            isEmpty= { isSubmitted && loginData.password.trim() === ""}
+                            message="Falta ingresar la contraseña"
                         />
                         
                         <div className="flex justify-end">

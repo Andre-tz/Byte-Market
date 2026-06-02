@@ -1,6 +1,6 @@
-import type { RegisterFormData } from "../types/user.types";
+import type { LoginFormData, RegisterFormData } from "../types/user.types";
 
-const isEmptyFields = ( obj: RegisterFormData )=>{
+const isEmptyFields = ( obj: RegisterFormData | LoginFormData )=>{
     return Object.values( obj ).some( value => value.trim() === "")
 }
 export default isEmptyFields;

@@ -33,9 +33,7 @@ const Register = () => {
 
         if( !isEmptyCells && perfectPasword ){
             userRegister( registerData )
-            console.log("formulario enviado")
-        }else{
-            console.log("algo anda mal")
+            return
         }
     };
 
