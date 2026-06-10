@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
 import React, { useState } from "react";
 import type { RegisterFormData } from "../types/user.types";
@@ -10,6 +10,7 @@ const Register = () => {
     const { userRegister } = useAuth();
     const [ registerData, setRegisterData ] = useState<RegisterFormData>( { name: "", lastName: "", email: "", password: "", confirmPassword: "" } );
     const [ isSubmitted, setIsSubmitted ] = useState<boolean>( false )
+    const navigation = useNavigate()
 
     const handleDataRegister = ( event: React.ChangeEvent<HTMLInputElement> )=>{
         const { id, value } = event.target;
@@ -33,6 +34,7 @@ const Register = () => {
 
         if( !isEmptyCells && perfectPasword ){
             userRegister( registerData )
+            navigation( "/profile" )
             return
         }
     };

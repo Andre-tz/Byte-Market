@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthInput from "../components/ui/AuthInput";
 import { useState} from "react";
 import type { LoginFormData } from "../types/user.types";
+import useAuth from "../hooks/useAuth";
 //import { LiaEyeSlashSolid } from "react-icons/lia";
 
 const LogInPage = () => {
     const [ loginData, setLoginData ] = useState<LoginFormData>( { email: "", password: ""} );
     const [ isSubmitted, setIsSubmitted ] = useState<boolean>( false )
+    const { userLogin } = useAuth();
+    const navigate = useNavigate();
 
     const handleLoginData = ( event : React.ChangeEvent<HTMLInputElement>) =>{
         const { id, value } = event.target;
@@ -19,6 +22,8 @@ const LogInPage = () => {
     const handeUserLoginData = ( event: React.SubmitEvent<HTMLFormElement> ) =>{
         event.preventDefault()
         setIsSubmitted( true )
+        const success = userLogin( loginData )
+        if( success ) { navigate( "/profile" ) }
     }
 
     return (

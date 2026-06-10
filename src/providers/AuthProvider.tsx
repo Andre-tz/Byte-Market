@@ -8,7 +8,7 @@ type Props = {
 
 const AuthProvider = ( { children } : Props )=>{
     const [ user, setUser ] = useState<User>( ()=>{
-        const storedData = localStorage.getItem( "userAuth")
+        const storedData = localStorage.getItem( "currentUser")
         if( !storedData ) return { name: "", lastName: "", email: "", password:"" }
 
         try{
@@ -18,7 +18,15 @@ const AuthProvider = ( { children } : Props )=>{
         }
     })
 
-    const [ allUsers, setAllUsers ] = useState<User[]>( [] );
+    const [ allUsers, setAllUsers ] = useState<User[]>( ()=>{
+        const storedData = localStorage.getItem( "allUsers" );
+        if( !storedData ) return [];
+        try {
+            return JSON.parse( storedData )
+        } catch{
+            return []
+        }
+    } );
 
     const userRegister = ( userData : RegisterFormData )=>{
         const newUser: User = 
@@ -33,12 +41,18 @@ const AuthProvider = ( { children } : Props )=>{
     }
     
     const userLogin = ( userData : LoginFormData ) =>{
-        console.log( userData, "falta logicaaa")
-        //falta logica!
+        const { email, password } = userData
+        const userFound = allUsers.find(user => user.email === email && password === user.password )
+        if( userFound ) {
+             setUser( userFound ) 
+             return true
+            } else {
+                return false
+                } 
     }
 
     useEffect( ()=>{
-        localStorage.setItem( "userAuth", JSON.stringify( user))
+        localStorage.setItem( "currentUser", JSON.stringify( user))
     }, [ user, allUsers ])
     
     useEffect( ()=>{

@@ -4,11 +4,15 @@ import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import SearchBar from "../ui/SearchBar";
+import useAuth from "../../hooks/useAuth";
+import isEmptyFields from "../../utils/isEmptyFields";
 
 const Header = () => {
     const { t  } = useTranslation();
     const  toggleLanguage = useLanguage();
     const { cart } = useCart();
+    const { user } = useAuth();
+    const isUserDesconnected = isEmptyFields( user )
     return (
         <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/90 text-slate-100 backdrop-blur-md">
             <div className="mx-auto flex w-[min(1200px,94%)] flex-wrap items-center gap-4 py-3">
@@ -38,7 +42,7 @@ const Header = () => {
                 <div className="flex items-center gap-2 text-sm">
                     <button onClick={ toggleLanguage } type="button"  className=" cursor-pointer rounded-md border border-cyan-400/35 bg-slate-900 px-3 py-2 font-semibold tracking-wide text-cyan-300 transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" >EN | ES</button>
 
-                    <Link to={ "/account" } >
+                    <Link to={ isUserDesconnected? "/account" : "/profile" } >
                         <button type="button"  className=" cursor-pointer rounded-md border border-slate-700 bg-slate-900 px-3 py-2 transition hover:border-cyan-400/50">{t("header.account")}</button>
                     </Link>
                     

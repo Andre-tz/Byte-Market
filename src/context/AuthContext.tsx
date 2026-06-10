@@ -7,7 +7,7 @@ type AuthContextType = {
     allUsers: User[]
     setAllUsers: React.Dispatch<React.SetStateAction<User[]>>
     userRegister : ( data : RegisterFormData ) => void
-    userLogin : ( data : LoginFormData ) => void
+    userLogin : ( data : LoginFormData ) => boolean
 }
 
 const AuthContext = createContext<AuthContextType | null>( null );
