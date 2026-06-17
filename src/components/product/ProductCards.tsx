@@ -4,16 +4,30 @@ import { BsCartCheckFill } from "react-icons/bs";
 import useCart from "../../hooks/useCart"; 
 import formatPrice from "../../utils/formatPrice";
 import type { Product } from "../../types/product.types";
+import useAuth from "../../hooks/useAuth";
+import isEmptyFields from "../../utils/isEmptyFields";
 
-type Card = Product;
+type Card = Product & {
+    showModal : ()=>void;
+}
 
-const ProductCards = ({ id, name, price, source, category, images, stock }: Card) => {
+const ProductCards = ({ id, name, price, source, category, images, stock, showModal }: Card) => {
     const { addProductCart, cart } = useCart();
+    const { user } = useAuth()
     const product = { id, name, price, source, category, images, stock }
     const isSelected = cart.some( productCard => productCard.id === product.id )
 
     const handleProduct = ()=>{
         if( !isSelected){ addProductCart( product )}
+    }
+
+    const handleClick = () =>{
+        const noUser = isEmptyFields( user )
+        if( noUser ){
+            showModal()
+        }else{
+            handleProduct()
+        }
     }
     return (
         <article className="group overflow-hidden rounded-xl border border-slate-800 bg-slate-900/70 transition hover:border-cyan-400/45 hover:bg-slate-900">
@@ -27,7 +41,7 @@ const ProductCards = ({ id, name, price, source, category, images, stock }: Card
 
                 <div className="flex items-center justify-between gap-3">
                     <p className="text-lg font-bold text-cyan-300">{ formatPrice( price ) }</p>
-                    <button type="button" onClick={ handleProduct } disabled= { isSelected }
+                    <button type="button" onClick={ handleClick } disabled= { isSelected }
                         className={`cursor-pointer rounded-md px-3 py-2 text-s font-semibold transition ${
                             isSelected
                                 ? "bg-emerald-400 text-slate-950 ring-1 ring-emerald-300/70 hover:bg-emerald-300 hover:ring-emerald-200/80"

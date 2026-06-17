@@ -10,7 +10,7 @@ const Catalog = () => {
         <ProductGrid
             arrayProduct={ products }
             loading= { loading }
-             />
+        />
     </main>
   );
 };
