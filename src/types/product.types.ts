@@ -22,3 +22,7 @@ export interface ApiProduct {
 export interface CartItem extends Product{
     quantity: number 
 }
+
+export interface CartByUser {
+    [ userId: number ]: CartItem[]
+}

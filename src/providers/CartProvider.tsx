@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
-import type { CartItem, Product } from "../types/product.types"
+import type { CartByUser, CartItem, Product } from "../types/product.types"
 import CartContext from "../context/CartContext"
+import getStoredData from "../utils/getStoredData"
 type Props = {
     children: React.ReactNode
 }
 
 const CartProvider = ( { children } : Props ) =>{
 
-    const [ cart, setCart ] = useState<CartItem[]>( ()=>{
-        const storedData = localStorage.getItem( "userCart" );
+    const [ currentCart, setCurrentCart ] = useState<CartItem[]>( ()=>{
+        const storedData = localStorage.getItem( "currentCart" );
         if( !storedData ) return []
         try{
             return JSON.parse( storedData )
@@ -16,18 +17,21 @@ const CartProvider = ( { children } : Props ) =>{
             return []
         }
     } )
+
+    const[ cartByUser, setCartByUser ] = useState<CartByUser[]>( getStoredData( "cartsByUser", [] ) )
+
     //functions
     const addProductCart =( product : Product)=>{
        const newProduct = { ...product, quantity : 1 }
-        setCart( prevCart=>  [ ...prevCart, newProduct] )
+        setCurrentCart( prevCart=>  [ ...prevCart, newProduct] )
     }
 
     const removeProductCart = ( id: number ) =>{
-        setCart( prevCart =>( prevCart.filter( idProd => idProd.id !== id ) ) )
+        setCurrentCart( prevCart =>( prevCart.filter( idProd => idProd.id !== id ) ) )
     }
 
     const increaseQuantity= ( id: number ) =>{
-        setCart( prevCart => prevCart.map( item =>{
+        setCurrentCart( prevCart => prevCart.map( item =>{
             const { stock , quantity } = item
             if( item.id === id && stock > quantity ){
                 return { ...item, quantity: quantity+ 1}
@@ -37,7 +41,7 @@ const CartProvider = ( { children } : Props ) =>{
     }   
 
     const decreaseQuantity = ( id: number ) =>{
-        setCart( prevCart => prevCart.map( item =>{
+        setCurrentCart( prevCart => prevCart.map( item =>{
             const { quantity } = item
             if( item.id === id && quantity>1 ){
                 return { ...item, quantity: quantity- 1}
@@ -47,7 +51,7 @@ const CartProvider = ( { children } : Props ) =>{
     }
 
     const getCartSubTotal = ()=>{
-        return cart.reduce( ( total, product ) =>{
+        return currentCart.reduce( ( total, product ) =>{
             total = total + product.price * product.quantity
             return total
         }, 0)
@@ -75,7 +79,7 @@ const CartProvider = ( { children } : Props ) =>{
     }
     //this useEffect update itself when cart changed
     useEffect( ()=>{
-        localStorage.setItem( "userCart", JSON.stringify( cart ))
+        localStorage.setItem( "userCart", JSON.stringify( userca ))
     }, [ cart] )
     return(
         <CartContext.Provider value={{ cart, addProductCart, removeProductCart, increaseQuantity, decreaseQuantity, getCartSubTotal, getDiscount, getShippingCost, getCartTotal } }>
