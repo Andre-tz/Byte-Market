@@ -12,10 +12,10 @@ type Card = Product & {
 }
 
 const ProductCards = ({ id, name, price, source, category, images, stock, showModal }: Card) => {
-    const { addProductCart, cart } = useCart();
+    const { addProductCart, currentCart } = useCart();
     const { user } = useAuth()
     const product = { id, name, price, source, category, images, stock }
-    const isSelected = cart.some( productCard => productCard.id === product.id )
+    const isSelected = currentCart.some( productCard => productCard.id === product.id )
 
     const handleProduct = ()=>{
         if( !isSelected){ addProductCart( product )}

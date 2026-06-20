@@ -1,36 +1,25 @@
 import { useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import type { LoginFormData, RegisterFormData, User } from "../types/user.types";
+import getStoredData from "../utils/getStoredData";
 
 type Props = {
     children: React.ReactNode;
 }
 
 const AuthProvider = ( { children } : Props )=>{
-    const [ user, setUser ] = useState<User>( ()=>{
-        const storedData = localStorage.getItem( "currentUser")
-        if( !storedData ) return { name: "", lastName: "", email: "", password:"" }
 
-        try{
-            return JSON.parse( storedData )
-        }catch{
-            return { name: "", lastName: "", email: "", password:"" }
-        }
-    })
+    const USER_STORAGE_KEY = "currentUser";
+    const ALL_USERS_STORAGE_KEY = "allUsers";
 
-    const [ allUsers, setAllUsers ] = useState<User[]>( ()=>{
-        const storedData = localStorage.getItem( "allUsers" );
-        if( !storedData ) return [];
-        try {
-            return JSON.parse( storedData )
-        } catch{
-            return []
-        }
-    } );
+    const [ user, setUser ] = useState<User>( getStoredData( USER_STORAGE_KEY, { id: "" , name: "", lastName: "", email: "", password: "" }) )
+
+    const [ allUsers, setAllUsers ] = useState<User[]>( getStoredData( ALL_USERS_STORAGE_KEY, [] ) );
 
     const userRegister = ( userData : RegisterFormData )=>{
         const newUser: User = 
             { 
+                id: crypto.randomUUID(),
                 name: userData.name,
                 lastName: userData.lastName, 
                 email: userData.email, 

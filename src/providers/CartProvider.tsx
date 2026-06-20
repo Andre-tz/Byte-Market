@@ -2,23 +2,20 @@ import { useEffect, useState } from "react"
 import type { CartByUser, CartItem, Product } from "../types/product.types"
 import CartContext from "../context/CartContext"
 import getStoredData from "../utils/getStoredData"
+//import useAuth from "../hooks/useAuth"
 type Props = {
     children: React.ReactNode
 }
 
 const CartProvider = ( { children } : Props ) =>{
 
-    const [ currentCart, setCurrentCart ] = useState<CartItem[]>( ()=>{
-        const storedData = localStorage.getItem( "currentCart" );
-        if( !storedData ) return []
-        try{
-            return JSON.parse( storedData )
-        }catch{
-            return []
-        }
-    } )
+    const CART_STORAGE_KEY = "currentCart";
+    const USER_CARTS_STORAGE_KEY = "cartsByUser";
+    //const { id } = useAuth();
 
-    const[ cartByUser, setCartByUser ] = useState<CartByUser[]>( getStoredData( "cartsByUser", [] ) )
+    const [ currentCart, setCurrentCart ] = useState<CartItem[]>( getStoredData( CART_STORAGE_KEY, [] ) )
+
+    const[ cartByUser, setCartByUser ] = useState<CartByUser>( getStoredData( USER_CARTS_STORAGE_KEY, { } ) )
 
     //functions
     const addProductCart =( product : Product)=>{
@@ -77,12 +74,26 @@ const CartProvider = ( { children } : Props ) =>{
         const shipping = getShippingCost()
         return ( subTotal - discount ) + shipping
     }
+
+    const updateCartsByUser = ( cart : CartItem[], userId: string ) =>{
+        setCartByUser( prev => (
+            {
+                ...prev,
+                [ userId ] : cart
+            }
+        ))
+    }
     //this useEffect update itself when cart changed
     useEffect( ()=>{
-        localStorage.setItem( "userCart", JSON.stringify( userca ))
-    }, [ cart] )
+        localStorage.setItem( CART_STORAGE_KEY, JSON.stringify( currentCart ) )
+
+    }, [ currentCart ] )
+
+    useEffect( ()=>{
+        localStorage.setItem( USER_CARTS_STORAGE_KEY, JSON.stringify( cartByUser ) )
+    }, [ cartByUser ] )
     return(
-        <CartContext.Provider value={{ cart, addProductCart, removeProductCart, increaseQuantity, decreaseQuantity, getCartSubTotal, getDiscount, getShippingCost, getCartTotal } }>
+        <CartContext.Provider value={{ currentCart, cartByUser, updateCartsByUser, addProductCart, removeProductCart, increaseQuantity, decreaseQuantity, getCartSubTotal, getDiscount, getShippingCost, getCartTotal } }>
             { children }
         </CartContext.Provider>
     )

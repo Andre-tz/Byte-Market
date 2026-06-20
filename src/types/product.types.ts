@@ -24,5 +24,5 @@ export interface CartItem extends Product{
 }
 
 export interface CartByUser {
-    [ userId: number ]: CartItem[]
+    [ userId: string ]: CartItem[]
 }

@@ -2,7 +2,7 @@ import { createContext } from "react";
 import type { CartByUser, CartItem, Product } from "../types/product.types";
 
 type CartContextType = {
-    cartByUser: CartByUser[];
+    cartByUser: CartByUser;
     currentCart: CartItem[];
     addProductCart: ( product: Product )=> void;
     removeProductCart : ( id: number )=> void;
@@ -11,7 +11,8 @@ type CartContextType = {
     getCartSubTotal : ( ) => number;
     getDiscount: ( ) => number;
     getShippingCost: ()=> number;
-    getCartTotal: ()=> number
+    getCartTotal: ()=> number;
+    updateCartsByUser: ( cart: CartItem[], idUser: string)=>void;
 }
 
 const CartContext = createContext<CartContextType | null>( null );
