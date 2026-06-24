@@ -12,7 +12,6 @@ type CartContextType = {
     getDiscount: ( ) => number;
     getShippingCost: ()=> number;
     getCartTotal: ()=> number;
-    updateCartsByUser: ( cart: CartItem[], idUser: string)=>void;
 }
 
 const CartContext = createContext<CartContextType | null>( null );

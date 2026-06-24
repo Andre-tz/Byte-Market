@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import type { LoginFormData, RegisterFormData, User } from "../types/user.types";
 import getStoredData from "../utils/getStoredData";
+import isEmptyFields from "../utils/isEmptyFields";
 
 type Props = {
     children: React.ReactNode;
@@ -41,12 +42,13 @@ const AuthProvider = ( { children } : Props )=>{
     }
 
     useEffect( ()=>{
+        if( isEmptyFields( user ) ){ return }
         localStorage.setItem( "currentUser", JSON.stringify( user))
-    }, [ user, allUsers ])
+    }, [ user ])
     
     useEffect( ()=>{
         localStorage.setItem( "allUsers", JSON.stringify( allUsers ) )
-    }, [ user, allUsers ])
+    }, [ allUsers ])
     
     return (
         <AuthContext.Provider value={ { user, setUser, userRegister, userLogin, allUsers, setAllUsers } }>

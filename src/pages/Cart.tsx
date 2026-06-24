@@ -7,9 +7,9 @@ import CartSummary from "../components/cart/CartSummary";
 
 //displays the shopping cart content
 const Cart = () => {
-    const { cart } = useCart();
+    const { currentCart } = useCart();
 
-    const totalProducts = cart.length;
+    const totalProducts = currentCart.length;
 
     return (
         <main className="mx-auto w-[min(1200px,94%)] space-y-6 py-8">
@@ -30,7 +30,7 @@ const Cart = () => {
             </section>
 
             {
-                cart.length === 0 ? (
+                currentCart.length === 0 ? (
                     <section className="rounded-2xl border border-slate-800 bg-slate-900/70 p-8 text-center shadow-[0_0_30px_rgba(15,23,42,0.35)]">
                         <div className="mx-auto grid h-20 w-20 place-content-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-4xl text-cyan-300">
                             <MdOutlineRemoveShoppingCart />
@@ -53,7 +53,7 @@ const Cart = () => {
                                 </div>
 
                                 <div className="space-y-4">
-                                    {cart.map((item, index) => (
+                                    {currentCart.map((item, index) => (
                                         <CartItem
                                             key={`${item.id}-${index}`}
                                             id={ item.id }
