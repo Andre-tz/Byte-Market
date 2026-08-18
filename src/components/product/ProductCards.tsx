@@ -5,7 +5,6 @@ import useCart from "../../hooks/useCart";
 import formatPrice from "../../utils/formatPrice";
 import type { Product } from "../../types/product.types";
 import useAuth from "../../hooks/useAuth";
-import isEmptyFields from "../../utils/isEmptyFields";
 
 type Card = Product & {
     showModal : ()=>void;
@@ -22,7 +21,7 @@ const ProductCards = ({ id, name, price, source, category, images, stock, showMo
     }
 
     const handleClick = () =>{
-        const noUser = isEmptyFields( user )
+        const noUser =  !user.id;
         if( noUser ){
             showModal()
         }else{

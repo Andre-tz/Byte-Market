@@ -4,6 +4,12 @@ export interface User  {
     lastName: string;
     email: string; 
     password: string;
+    phone: string;
+    shippingAddress: {
+        address: string;
+        city: string;
+        country: string;
+    }
 }
 
 export interface RegisterFormData extends User {

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import type { LoginFormData, RegisterFormData, User } from "../types/user.types";
 import getStoredData from "../utils/getStoredData";
-import isEmptyFields from "../utils/isEmptyFields";
 
 type Props = {
     children: React.ReactNode;
@@ -13,7 +12,7 @@ const AuthProvider = ( { children } : Props )=>{
     const USER_STORAGE_KEY = "currentUser";
     const ALL_USERS_STORAGE_KEY = "allUsers";
 
-    const [ user, setUser ] = useState<User>( getStoredData( USER_STORAGE_KEY, { id: "" , name: "", lastName: "", email: "", password: "" }) )
+    const [ user, setUser ] = useState<User>( getStoredData( USER_STORAGE_KEY, { id: "" , name: "", lastName: "", email: "", password: "", phone: "", shippingAddress: { address: "", city:"" , country:"" } }) )
 
     const [ allUsers, setAllUsers ] = useState<User[]>( getStoredData( ALL_USERS_STORAGE_KEY, [] ) );
 
@@ -24,7 +23,13 @@ const AuthProvider = ( { children } : Props )=>{
                 name: userData.name,
                 lastName: userData.lastName, 
                 email: userData.email, 
-                password: userData.password 
+                password: userData.password,
+                phone: "",
+                shippingAddress: {
+                    address: "",
+                    city: "",
+                    country: ""
+                }
             } 
             setUser( newUser )
             setAllUsers( prev=>[ ...prev, newUser])
@@ -42,7 +47,7 @@ const AuthProvider = ( { children } : Props )=>{
     }
 
     useEffect( ()=>{
-        if( isEmptyFields( user ) ){ return }
+        if( !user.id ) return
         localStorage.setItem( "currentUser", JSON.stringify( user))
     }, [ user ])
     
