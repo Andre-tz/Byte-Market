@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import SearchBar from "../ui/SearchBar";
 import useAuth from "../../hooks/useAuth";
-import isEmptyFields from "../../utils/isEmptyFields";
 
 const Header = () => {
     const { t  } = useTranslation();
     const  toggleLanguage = useLanguage();
     const { currentCart } = useCart();
     const { user } = useAuth();
-    const isUserDesconnected = isEmptyFields( user )
+    const isUserDesconnected = !user.id
     return (
         <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/90 text-slate-100 backdrop-blur-md">
             <div className="mx-auto flex w-[min(1200px,94%)] flex-wrap items-center gap-4 py-3">
