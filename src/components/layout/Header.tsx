@@ -11,7 +11,7 @@ const Header = () => {
     const  toggleLanguage = useLanguage();
     const { currentCart } = useCart();
     const { user } = useAuth();
-    const isUserDesconnected = !user.id
+    const isUserDesconnected = user === null
     return (
         <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/90 text-slate-100 backdrop-blur-md">
             <div className="mx-auto flex w-[min(1200px,94%)] flex-wrap items-center gap-4 py-3">

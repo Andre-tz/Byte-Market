@@ -12,7 +12,7 @@ const AuthProvider = ( { children } : Props )=>{
     const USER_STORAGE_KEY = "currentUser";
     const ALL_USERS_STORAGE_KEY = "allUsers";
 
-    const [ user, setUser ] = useState<User>( getStoredData( USER_STORAGE_KEY, { id: "" , name: "", lastName: "", email: "", password: "", phone: "", shippingAddress: { address: "", city:"" , country:"" } }) )
+    const [ user, setUser ] = useState<User | null >( getStoredData( USER_STORAGE_KEY, null) )
 
     const [ allUsers, setAllUsers ] = useState<User[]>( getStoredData( ALL_USERS_STORAGE_KEY, [] ) );
 
@@ -45,9 +45,13 @@ const AuthProvider = ( { children } : Props )=>{
                 return false
                 } 
     }
+    const userLogout = ( )=>{
+        setUser( null )
+        localStorage.removeItem( USER_STORAGE_KEY )
+    }
 
     useEffect( ()=>{
-        if( !user.id ) return
+        if( !user ) return
         localStorage.setItem( "currentUser", JSON.stringify( user))
     }, [ user ])
     
@@ -56,7 +60,7 @@ const AuthProvider = ( { children } : Props )=>{
     }, [ allUsers ])
     
     return (
-        <AuthContext.Provider value={ { user, setUser, userRegister, userLogin, allUsers, setAllUsers } }>
+        <AuthContext.Provider value={ { user, setUser, userRegister, userLogin, userLogout, allUsers, setAllUsers } }>
             { children }
         </AuthContext.Provider>
     )

@@ -12,8 +12,13 @@ const CartProvider = ( { children } : Props ) =>{
 
     const USER_CARTS_STORAGE_KEY = "cartsByUser";
     const { user } = useAuth();
-
     const[ cartByUser, setCartByUser ] = useState<CartByUser>( getStoredData( USER_CARTS_STORAGE_KEY, { } ) )
+    
+    useEffect( ()=>{
+        localStorage.setItem( USER_CARTS_STORAGE_KEY, JSON.stringify( cartByUser ) )
+    }, [ cartByUser ] )
+
+    if( !user) return null
     const currentCart = cartByUser[ user.id ]?? []
 
     //functions
@@ -109,9 +114,7 @@ const CartProvider = ( { children } : Props ) =>{
         return ( subTotal - discount ) + shipping
     }
 
-    useEffect( ()=>{
-        localStorage.setItem( USER_CARTS_STORAGE_KEY, JSON.stringify( cartByUser ) )
-    }, [ cartByUser ] )
+    
     return(
         <CartContext.Provider value={{ currentCart, cartByUser, addProductCart, removeProductCart, increaseQuantity, decreaseQuantity, getCartSubTotal, getDiscount, getShippingCost, getCartTotal } }>
             { children }

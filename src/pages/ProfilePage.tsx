@@ -2,27 +2,35 @@ import { Link } from "react-router-dom";
 import FormInput from "../components/ui/FormInput";
 import useAuth from "../hooks/useAuth";
 import getInitial from "../utils/getInitials";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { type User } from "../types/user.types";
 
 const ProfilePage = () => {
     const { user, setUser, setAllUsers } = useAuth();
-    const perfilImages = getInitial( user.name, user.lastName );
     const [ isEditing, setIsEditing ] = useState<boolean>( false );
     const [ editedUser, setEditedUser] = useState<User>( user )
+    if( !user ) { return null }
+    const perfilImages = getInitial( user.name, user.lastName );
     const handleEditing = ()=>{
-        setIsEditing( true )
+        if( !isEditing ){
+            setIsEditing( true )
+        } else {
+            setIsEditing( false )
+            setEditedUser( user )
+        }
     }
 
     const handleData = ()=>{
-        setIsEditing( false )
-        setUser( editedUser )
-        setAllUsers( prevUsers => (
-            prevUsers.map( userRegistered => 
-                userRegistered.id === user.id ?
-                user : userRegistered
-            )
-        ) )
+        if( isEditing ){
+            setIsEditing( false )
+            setUser( editedUser )
+            setAllUsers( prevUsers => (
+                prevUsers.map( userRegistered => 
+                    userRegistered.id === editedUser.id ?
+                    editedUser : userRegistered
+                )
+            ) )
+        }
     }
 
     const handleChange = ( e: React.ChangeEvent<HTMLInputElement>, name: string ) =>{
@@ -43,7 +51,6 @@ const ProfilePage = () => {
          ) )
     }
     
-    useEffect( ()=>{ console.log(isEditing, editedUser )}, [ isEditing, editedUser])
     return (
         <main className="mx-auto w-[min(1000px,94%)] space-y-6 py-8">
             <div className="relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-cyan-400/20 bg-linear-to-br from-slate-900 via-slate-900 to-slate-950 p-6 shadow-[0_0_40px_rgba(34,211,238,0.08)] sm:p-8 md:flex-row md:items-center md:justify-between">
@@ -155,7 +162,7 @@ const ProfilePage = () => {
             </section>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                <button className="cursor-pointer rounded-xl border border-cyan-400/35 bg-slate-950/80 px-5 py-2.5 text-sm font-semibold text-cyan-300 transition hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" onClick={ handleEditing }>Editar perfil</button>
+                <button className={`cursor-pointer rounded-xl border px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 ${isEditing ? "border-red-400/50 bg-red-950/25 text-red-300 hover:border-red-300 hover:bg-red-950/45 hover:text-red-200 focus-visible:ring-red-400/60" : "border-cyan-400/35 bg-slate-950/80 text-cyan-300 hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-200 focus-visible:ring-cyan-400/70"}`} onClick={ handleEditing }>{ !isEditing? "Editar" : "Cancelar" }</button>
                 <button className="cursor-pointer rounded-xl bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-[0_14px_30px_rgba(34,211,238,0.18)] transition hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70" onClick={ handleData }>Guardar cambios</button>
             </div>
 

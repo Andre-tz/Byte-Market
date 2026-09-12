@@ -21,7 +21,7 @@ const ProductCards = ({ id, name, price, source, category, images, stock, showMo
     }
 
     const handleClick = () =>{
-        const noUser =  !user.id;
+        const noUser =  user=== null;
         if( noUser ){
             showModal()
         }else{
